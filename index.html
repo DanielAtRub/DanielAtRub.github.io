@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículum</title>
+    <link rel="stylesheet" href="index.css">
+    <script defer src="index.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Tu Nombre</h1>
+        <p>Desarrollador de Software | Especialista en VR/AR</p>
+    </header>
+    <div class="container">
+        <!-- Columna izquierda -->
+        <div class="left-column">
+            <section id="sobre-mi">
+                <h2>Sobre Mí</h2>
+                <p>Breve descripción sobre ti y tus objetivos profesionales.</p>
+            </section>
+            <section id="habilidades">
+                <h2>Habilidades</h2>
+                <ul>
+                    <li>Unity & C#</li>
+                    <li>Realidad Virtual y Aumentada</li>
+                    <li>Desarrollo Multijugador</li>
+                </ul>
+            </section>
+        </div>
+        <!-- Columna derecha -->
+        <div class="right-column">
+            <section id="experiencia">
+                <h2>Experiencia y Estudios</h2>
+                <div class="filter-buttons">
+                    <button data-filter="all">Todos</button>
+                    <button data-filter="experience">Experiencia</button>
+                    <button data-filter="personal-project">Proyectos</button>
+                    <button data-filter="education">Estudios</button>
+                </div>
+                <div class="timeline-container">
+                    <div class="timeline">
+                        <div class="timeline-item experience" data-year="2025" data-category="experience">
+                            <div class="timeline-date">2025</div>
+                            <div class="timeline-content">
+                                <h3>CTO en Proyecto de AR</h3>
+                                <p class="subtitle">Liderando el desarrollo de soluciones de AR</p>
+                                <a href="https://empresaXYZ.com" target="_blank">Ver más</a>
+                            </div>
+                        </div>
+                        <div class="timeline-item experience" data-year="2024" data-category="experience">
+                            <div class="timeline-date">2024</div>
+                            <div class="timeline-content">
+                                <h3>Desarrollador de VR en Unity</h3>
+                                <p class="subtitle">Desarrollo de experiencias en realidad virtual</p>
+                                <a href="https://empresaABC.com" target="_blank">Ver más</a>
+                            </div>
+                        </div>
+                        <div class="timeline-item personal-project" data-year="2024" data-category="personal-project">
+                            <div class="timeline-date">2024</div>
+                            <div class="timeline-content">
+                                <h3>Simulador VR Personal</h3>
+                                <p class="subtitle">Proyecto independiente de simulación en VR</p>
+                                <a href="#">Ver más</a>
+                            </div>
+                        </div>
+                        <div class="timeline-item personal-project" data-year="2023" data-category="personal-project">
+                            <div class="timeline-date">2023</div>
+                            <div class="timeline-content">
+                                <h3>Juego AR Experimental</h3>
+                                <p class="subtitle">Investigación en mecánicas interactivas en AR</p>
+                                <a href="#">Ver más</a>
+                            </div>
+                        </div>
+                        <div class="timeline-item education" data-year="2023" data-category="education">
+                            <div class="timeline-date">2023</div>
+                            <div class="timeline-content">
+                                <h3>Ingeniería Informática</h3>
+                                <p class="subtitle">Universidad X</p>
+                                <a href="#">Ver más</a>
+                            </div>
+                        </div>
+                        <div class="timeline-item education" data-year="2020" data-category="education">
+                            <div class="timeline-date">2020</div>
+                            <div class="timeline-content">
+                                <h3>Curso de Unity Avanzado</h3>
+                                <p class="subtitle">Especialización en desarrollo de videojuegos</p>
+                                <a href="#">Ver más</a>
+                            </div>
+                        </div>							
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
