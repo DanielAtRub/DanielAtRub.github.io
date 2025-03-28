@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Calcular la posición para que el elemento seleccionado esté al 5% de la altura
         const selectedItemOffset = currentIndex * itemHeight;
-        const targetOffset = containerHeight * 0.001 - itemHeight / 2;
+        const targetOffset = (containerHeight * 0.001 - itemHeight / 2) - 20 ;
         const translateY = targetOffset - selectedItemOffset;
 
         // Aplicar la transformación al timeline
