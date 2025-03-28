@@ -184,6 +184,7 @@ header {
 
     .timeline-container {
         height: 500px; /* Reducir la altura del timeline */
+		margin-left: -16px;
     }
 
     .timeline-date {
