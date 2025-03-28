@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         timeline.style.transform = `translateY(${translateY}px)`;
     }
 
+    // Desplazamiento con el mouse (si está disponible)
     if (hasMouse) {
         window.addEventListener("wheel", (event) => {
             const visibleItems = items.filter(item => !item.classList.contains("hidden"));
@@ -67,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { passive: false });
     }
 
+    // Desplazamiento con teclas
     window.addEventListener("keydown", (event) => {
         const visibleItems = items.filter(item => !item.classList.contains("hidden"));
         if (event.key === "ArrowDown" && currentIndex < visibleItems.length - 1) {
@@ -80,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Manejo de filtros
     filterButtons.forEach(button => {
         button.addEventListener("click", () => {
             const filter = button.getAttribute("data-filter");
@@ -125,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, { passive: true });
 
+    // Activar el primer filtro por defecto
     filterButtons[0].classList.add("active");
     filterItems("all");
 });
