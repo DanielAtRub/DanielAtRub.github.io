@@ -159,22 +159,38 @@ header {
     display: none;
 }
 
+/* Estilos responsive */
 @media (max-width: 768px) {
     body {
         overflow-y: auto; /* Permite desplazamiento en móviles */
         height: auto; /* Evita bloqueo de scroll */
+		min-height: 100vh; /* Asegura que el body tenga suficiente altura para permitir el scroll */
     }
-@media (max-width: 768px) {
-  .columna-izquierda, 
-  .columna-derecha {
-    flex: 100%; /* Cada columna ocupa el 100% del ancho cuando se apilan */
-    min-width: 100%; /* Asegura que ambas usen todo el ancho disponible */
-  }
 
-  .columna-derecha {
-    min-height: 300px; /* Opcional: altura mínima para que el contenido sea legible */
-  }
+    .container {
+        flex-direction: column; /* Las columnas se apilan verticalmente */
+    }
+
+    .left-column, .right-column {
+        flex: none;
+        width: 100%; /* Cada columna ocupa el 100% del ancho */
+        min-width: 100%; /* Asegura que ambas usen todo el ancho disponible */
+    }
+
+    .timeline-item {
+        min-width: 250px; /* Tamaño más pequeño para los ítems en pantallas pequeñas */
+        padding: 10px; /* Reducir el padding */
+    }
+
+    .timeline-container {
+        height: 500px; /* Reducir la altura del timeline */
+    }
+
+    .timeline-date {
+        font-size: 14px; /* Reducir tamaño de la fecha */
+    }
+
+    .timeline-content {
+        font-size: 14px; /* Reducir tamaño de contenido */
+    }
 }
-}
-
-
