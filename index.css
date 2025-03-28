@@ -164,59 +164,17 @@ header {
         overflow-y: auto; /* Permite desplazamiento en móviles */
         height: auto; /* Evita bloqueo de scroll */
     }
+@media (max-width: 768px) {
+  .columna-izquierda, 
+  .columna-derecha {
+    flex: 100%; /* Cada columna ocupa el 100% del ancho cuando se apilan */
+    min-width: 100%; /* Asegura que ambas usen todo el ancho disponible */
+  }
 
-    .container {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .left-column, .right-column {
-        flex: none;
-        width: 100%;
-        border-right: none;
-        border-bottom: 2px solid #0ff;
-        padding: 15px;
-        overflow-y: auto; /* Permite scroll en cada columna */
-    }
-
-    .right-column {
-        max-height: 400px; /* Ajusta la altura para evitar que crezca demasiado */
-        overflow-y: auto; /* Permite desplazarse dentro si hay contenido largo */
-    }
-
-    .timeline-container {
-        height: auto;
-        overflow-y: auto; /* Activa el scroll en móviles */
-    }
-
-    .timeline {
-        position: relative;
-        top: auto;
-        transform: none;
-        gap: 15px;
-    }
-
-    .timeline-item {
-        min-width: auto;
-        width: 90%;
-        margin: 0 auto;
-    }
-
-    .timeline-date {
-        min-width: 60px;
-        font-size: 16px;
-    }
-
-    .filter-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .filter-buttons button {
-        padding: 6px 12px;
-        font-size: 14px;
-    }
+  .columna-derecha {
+    min-height: 300px; /* Opcional: altura mínima para que el contenido sea legible */
+  }
+}
 }
 
 
