@@ -93,6 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // 📱 **EVENTOS TÁCTILES**
+    const threshold = 40; // Ajustamos el umbral a 40px (puedes modificar este valor)
+
     timeline.addEventListener("touchstart", (event) => {
         isTouchingTimeline = true; // Marcar que el usuario está tocando la lista
         touchStartY = event.touches[0].clientY;
@@ -106,14 +108,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const visibleItems = items.filter(item => !item.classList.contains("hidden"));
 
-        if (deltaY > 10 && currentIndex < visibleItems.length - 1) {
-            currentIndex++;
-        } else if (deltaY < -10 && currentIndex > 0) {
-            currentIndex--;
+        if (Math.abs(deltaY) > threshold) {  // Solo si el movimiento es mayor que el umbral
+            if (deltaY > 0 && currentIndex < visibleItems.length - 1) {
+                currentIndex++;
+            } else if (deltaY < 0 && currentIndex > 0) {
+                currentIndex--;
+            }
+
+            updateTimeline();
+            touchStartY = touchMoveY; // Actualizar la posición inicial para suavizar el desplazamiento
         }
 
-        updateTimeline();
-        touchStartY = touchMoveY; // Actualizar la posición inicial para suavizar el desplazamiento
         event.preventDefault(); // Evitar que la página haga scroll mientras se mueve la lista
     });
 
