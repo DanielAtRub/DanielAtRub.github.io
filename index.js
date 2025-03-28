@@ -6,14 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const itemHeight = items[0].offsetHeight + 20; // Altura del item + espacio entre ellos
     let currentIndex = 0;
     let activeFilter = "all";
+    let touchStartY = 0;
+    let touchMoveY = 0;
+    let isTouchingTimeline = false;
 
-    // Detectar si el dispositivo tiene un ratón
     const hasMouse = window.matchMedia("(pointer: fine)").matches;
 
-    // Función para filtrar elementos
     function filterItems(filter) {
         activeFilter = filter;
-        currentIndex = 0; // Reiniciar índice al cambiar filtro
+        currentIndex = 0;
         
         items.forEach(item => {
             const category = item.getAttribute("data-category");
@@ -26,12 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
         updateTimeline();
     }
 
-    // Función para actualizar la visualización de la línea de tiempo
     function updateTimeline() {
         const visibleItems = items.filter(item => !item.classList.contains("hidden"));
         if (visibleItems.length === 0) return;
 
-        // Obtener la altura del contenedor
         const containerHeight = timelineContainer.offsetHeight;
 
         visibleItems.forEach((item, index) => {
@@ -48,16 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Calcular la posición para que el elemento seleccionado esté al 5% de la altura
         const selectedItemOffset = currentIndex * itemHeight;
-        const targetOffset = (containerHeight * 0.001 - itemHeight / 2) - 20 ;
+        const targetOffset = (containerHeight * 0.001 - itemHeight / 2) - 20;
         const translateY = targetOffset - selectedItemOffset;
 
-        // Aplicar la transformación al timeline
         timeline.style.transform = `translateY(${translateY}px)`;
     }
 
-    // Manejo del desplazamiento con rueda del mouse (solo si tiene ratón)
     if (hasMouse) {
         window.addEventListener("wheel", (event) => {
             const visibleItems = items.filter(item => !item.classList.contains("hidden"));
@@ -71,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { passive: false });
     }
 
-    // Soporte para navegación con teclado
     window.addEventListener("keydown", (event) => {
         const visibleItems = items.filter(item => !item.classList.contains("hidden"));
         if (event.key === "ArrowDown" && currentIndex < visibleItems.length - 1) {
@@ -85,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Evento de filtro con botones
     filterButtons.forEach(button => {
         button.addEventListener("click", () => {
             const filter = button.getAttribute("data-filter");
@@ -95,7 +89,42 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Inicializar la línea de tiempo con "Todos" seleccionado
+    // 📱 **EVENTOS TÁCTILES**
+    timeline.addEventListener("touchstart", (event) => {
+        isTouchingTimeline = true; // Marcar que el usuario está tocando la lista
+        touchStartY = event.touches[0].clientY;
+    });
+
+    timeline.addEventListener("touchmove", (event) => {
+        if (!isTouchingTimeline) return;
+
+        touchMoveY = event.touches[0].clientY;
+        const deltaY = touchStartY - touchMoveY;
+
+        const visibleItems = items.filter(item => !item.classList.contains("hidden"));
+
+        if (deltaY > 10 && currentIndex < visibleItems.length - 1) {
+            currentIndex++;
+        } else if (deltaY < -10 && currentIndex > 0) {
+            currentIndex--;
+        }
+
+        updateTimeline();
+        touchStartY = touchMoveY; // Actualizar la posición inicial para suavizar el desplazamiento
+        event.preventDefault(); // Evitar que la página haga scroll mientras se mueve la lista
+    });
+
+    timeline.addEventListener("touchend", () => {
+        isTouchingTimeline = false; // Terminar la interacción con la lista
+    });
+
+    // Permitir desplazamiento en la página si el usuario toca fuera de la lista
+    document.addEventListener("touchmove", (event) => {
+        if (!isTouchingTimeline) {
+            event.stopPropagation(); // Permitir scroll de la página
+        }
+    }, { passive: true });
+
     filterButtons[0].classList.add("active");
     filterItems("all");
 });
