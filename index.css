@@ -36,6 +36,7 @@ header {
     gap: 15px;
     justify-content: center;
     align-items: center;
+    z-index: 9999; /* Esto asegura que la sección esté encima de todo */
 }
 
 /* Estilo de los íconos */
