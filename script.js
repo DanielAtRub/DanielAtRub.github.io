@@ -134,61 +134,85 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const { prefix, ext, pad } = pattern;
     const makeUrl = i => `${prefix}${String(i).padStart(pad,'0')}.${ext}`;
+// ---------- PRELOAD: CARGAR TODOS LOS FRAMES (concurrencia limitada) ----------
 
-    // preloader simple con cola
-    const preloaded = {};
-    const queue = [];
-    const maxPar = 4;
-    let cur = 0;
+const preloaded = new Map(); // índice -> HTMLImageElement
+let failedCount = 0;
+const maxParallel = 8; // ajusta según servidor / cliente
+const retryOnFail = 1; // reintentos por imagen (0 para ninguno)
 
-    const enqueue = idx => {
-      idx = clamp(idx,1,totalFrames);
-      if (preloaded[idx] || queue.includes(idx)) return;
-      queue.push(idx); processQueue();
-    };
-    function processQueue(){
-      if (cur >= maxPar) return;
-      const idx = queue.shift();
-      if (!idx) return;
-      cur++;
-      const url = makeUrl(idx);
-      loadImagePromise(url,5000).then(img=>{
-        preloaded[idx] = img;
-        cur--; processQueue();
-      }).catch(()=>{
-        cur--; processQueue();
-      });
-    }
-
-    // carga inicial frame 1 (rápido)
-    enqueue(1);
-
-    // function updateBackground similar a antes
-    let lastIndex = -1;
-    function updateByPercent(pct) {
-      if (!animatedBackgroundDiv) return;
-      const clamped = clamp(pct,0,100);
-      let idx = Math.ceil((clamped/100)*(totalFrames-1))+1;
-      idx = clamp(idx,1,totalFrames);
-      if (idx === lastIndex) return;
-      lastIndex = idx;
-      const url = makeUrl(idx);
-      if (bgImg) {
-        const curSrc = bgImg.src || '';
-        if (!curSrc.endsWith(url)) {
-          if (preloaded[idx] && preloaded[idx].src) bgImg.src = preloaded[idx].src;
-          else bgImg.src = url;
-        }
-      } else if (animatedBackgroundDiv) {
-        const wanted = `url("${url}")`;
-        if (animatedBackgroundDiv.style.backgroundImage !== wanted) animatedBackgroundDiv.style.backgroundImage = wanted;
+// Helper que descarga una imagen y la guarda en preloaded
+function downloadFrame(idx, attempt = 0) {
+  return loadImagePromise(makeUrl(idx), 15000)
+    .then(img => {
+      preloaded.set(idx, img);
+      return { idx, ok: true };
+    })
+    .catch(err => {
+      if (attempt < retryOnFail) {
+        // reintentar una vez
+        return downloadFrame(idx, attempt + 1);
       }
-      // enqueue vecinos
-      for (let o=-3;o<=3;o++) enqueue(idx+o);
-    }
+      failedCount++;
+      console.warn(`[preload] fallo frame ${idx}: ${err.message}`);
+      return { idx, ok: false };
+    });
+}
 
-    // Exponemos updateByPercent a la parte de scroll (se asigna más abajo)
-    window.__updateAnimatedBackground = updateByPercent;
+// Ejecuta descargas con concurrencia limitada para todo el rango 1..totalFrames
+async function preloadAllFrames() {
+  console.info('[preload] iniciando precarga de todos los frames, total=', totalFrames);
+  const indices = Array.from({length: totalFrames}, (_,i)=>i+1);
+  const results = [];
+  let cursor = 0;
+  const workers = new Array(Math.min(maxParallel, totalFrames)).fill(0).map(async () => {
+    while (cursor < indices.length) {
+      const idx = indices[cursor++];
+      // eslint-disable-next-line no-await-in-loop
+      const res = await downloadFrame(idx);
+      results.push(res);
+    }
+  });
+
+  await Promise.all(workers);
+  const okCount = results.filter(r=>r.ok).length;
+  console.info(`[preload] terminado. ok=${okCount}, failed=${failedCount}`);
+  // Si quieres, asigna el primer frame precargado al bgImg inmediatamente:
+  if (preloaded.has(1) && bgImg) bgImg.src = preloaded.get(1).src;
+  // Exponer el mapa si lo quieres en window para debug:
+  window.__preloadedFrames = preloaded;
+}
+
+// Lanzamos la precarga "en background" inmediatamente
+preloadAllFrames().catch(e => console.error('[preload] error fatal:', e));
+
+// --- modificación de updateByPercent para usar preloaded si está disponible ---
+let lastIndex = -1;
+function updateByPercent(pct) {
+  if (!animatedBackgroundDiv) return;
+  const clamped = clamp(pct,0,100);
+  let idx = Math.ceil((clamped/100)*(totalFrames-1))+1;
+  idx = clamp(idx,1,totalFrames);
+  if (idx === lastIndex) return;
+  lastIndex = idx;
+  const url = makeUrl(idx);
+
+  if (bgImg) {
+    const curSrc = bgImg.src || '';
+    const pre = preloaded.get(idx);
+    if (pre && pre.src && !curSrc.endsWith(pre.src)) {
+      bgImg.src = pre.src;
+    } else if (!curSrc.endsWith(url)) {
+      // si todavía no está precargada (roundtrip) usamos url para cargar "rápido"
+      bgImg.src = url;
+    }
+  } else if (animatedBackgroundDiv) {
+    const wanted = `url("${url}")`;
+    if (animatedBackgroundDiv.style.backgroundImage !== wanted) animatedBackgroundDiv.style.backgroundImage = wanted;
+  }
+}
+window.__updateAnimatedBackground = updateByPercent;
+
 
     // si se precargó frame1, asignarlo
     if (preloaded[1] && preloaded[1].src && bgImg) bgImg.src = preloaded[1].src;
