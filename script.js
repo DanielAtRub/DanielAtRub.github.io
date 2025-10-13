@@ -4,14 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleElement = document.getElementById('main-title');
     const titleText = "Daniel Atienza: El Portafolio";
     let charIndex = 0;
-    function typeTitle() {
-        if (charIndex < titleText.length) {
-            titleElement.textContent += titleText.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeTitle, 100);
-        }
-    }
-    typeTitle();
+    
+	//function typeTitle() {
+    //    if (charIndex < titleText.length) {
+    //        titleElement.textContent += titleText.charAt(charIndex);
+    //        charIndex++;
+    //        setTimeout(typeTitle, 100);
+    //    }
+    //}
+    //typeTitle();
 
     // --- SISTEMA DE NAVEGACIÓN POR MISIONES (SCROLL SUAVE) ---
     document.querySelectorAll('.quest-link').forEach(link => {
