@@ -5,14 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleText = "Daniel Atienza: El Portafolio";
     let charIndex = 0;
     
-	//function typeTitle() {
-    //    if (charIndex < titleText.length) {
-    //        titleElement.textContent += titleText.charAt(charIndex);
-    //        charIndex++;
-    //        setTimeout(typeTitle, 100);
-    //    }
-    //}
-    //typeTitle();
+	function typeTitle() {
+        if (charIndex < titleText.length) {
+            titleElement.textContent += titleText.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeTitle, 100);
+        }
+    }
+    typeTitle();
 
     // --- SISTEMA DE NAVEGACIÓN POR MISIONES (SCROLL SUAVE) ---
     document.querySelectorAll('.quest-link').forEach(link => {
@@ -59,7 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentLevel = Math.floor((xpPercentage / 100) * maxLevel) + 1;
         const displayLevel = Math.min(currentLevel, maxLevel);
-        document.title = `Daniel Atienza [Nivel ${displayLevel}]`;
+        document.title = `Daniel Atienza`;
+
+		//document.title = `Daniel Atienza [Nivel ${displayLevel}]`;
         
         checkAchievements(xpPercentage);
     }
