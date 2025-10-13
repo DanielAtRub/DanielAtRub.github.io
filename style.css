@@ -115,3 +115,38 @@ footer { text-align: center; }
 #achievements-unlocked span.unlocked { border-color: var(--primary-color); background-color: var(--bg-color); color: var(--primary-color); }
 .achievement-toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background-color: var(--primary-color); color: var(--bg-color); padding: 15px 25px; border: 3px solid var(--bg-color); font-size: 1rem; z-index: 2000; transition: bottom 0.5s ease-in-out; }
 .achievement-toast.show { bottom: 20px; }
+
+/* Fondo animado (mantener así) */
+#animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* quita transition larga para evitar parpadeo; opcional */
+    transition: opacity 0.15s linear;
+    opacity: 1;
+}
+
+/* Asegura que los contenedores muestren el fondo detrás: usa rgba con alpha */
+.nes-container {
+    background-color: rgba(22,36,71,0.72); /* antes era sólido; ahora semitransparente */
+    border: 4px solid var(--text-color);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Si quieres que el .container sea totalmente transparente (opcional) */
+.container {
+    background: transparent;
+    position: relative;
+    z-index: 0;
+}
+
+/* Asegúrate de que game-ui esté por encima */
+.game-ui { z-index: 1000; position: fixed; top: 0; left: 0; width: 100%; }
