@@ -15,11 +15,16 @@
 body {
     font-family: 'Press Start 2P', cursive;
     background-color: var(--bg-color);
+    background-image: url('backgrounds/frame_001.jpg'); /* 👈 tu frame inicial */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     color: var(--text-color);
     line-height: 1.8;
     font-size: 14px;
     padding-top: 60px;
 }
+
 
 .social-links {
   display: flex;
