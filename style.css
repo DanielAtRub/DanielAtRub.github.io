@@ -69,8 +69,37 @@ body {
 }
 
 /* --- INTERFAZ DEL JUEGO (XP BAR) --- */
-.game-ui { position: fixed; top: 0; left: 0; width: 100%; background-color: #10101a; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 3px solid var(--border-color); z-index: 1000; font-size: 12px; }
-.xp-bar-container { display: flex; align-items: center; gap: 10px; }
+.game-ui { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    background-color: #10101a; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 20px; 
+    border-bottom: 3px solid var(--border-color); 
+    z-index: 1000; 
+    font-size: 12px; 
+}
+.ui-right-container {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacio entre barra XP y botón */
+}
+.nes-button.is-small {
+    padding: 4px 8px;
+    font-size: 10px;
+    margin: 0;
+    min-width: 40px; /* Ancho mínimo para que no baile al cambiar texto */
+    text-align: center;
+}
+.xp-bar-container { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
 .xp-bar-background { width: 200px; height: 20px; background-color: #333; border: 2px solid var(--text-color); }
 .xp-bar-progress { width: 0%; height: 100%; background-color: var(--secondary-color); transition: width 0.3s ease-out; }
 

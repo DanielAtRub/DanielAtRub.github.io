@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,69 +13,59 @@
     <div id="animated-background"></div> 
     <div class="game-ui">
         <div class="player-info">
-            <span id="player-name">Player: Daniel Atienza</span>
+            <span id="player-name" data-i18n="player">Player: Daniel Atienza</span>
         </div>
-        <div class="xp-bar-container">
-            <span>XP</span>
-            <div class="xp-bar-background">
-                <div id="xp-bar" class="xp-bar-progress"></div>
+        
+        <div class="ui-right-container">
+            <div class="xp-bar-container">
+                <span>XP</span>
+                <div class="xp-bar-background">
+                    <div id="xp-bar" class="xp-bar-progress"></div>
+                </div>
             </div>
+            <button id="lang-toggle" class="nes-button is-primary is-small">ES</button>
         </div>
     </div>
 
     <div class="container">
         <header>
-            <h1 id="main-title"></h1>
-            <p class="subtitle">Desarrollador de Software | Apasionado por VR/AR</p>
-			<div class="social-links">
-			  <a href="https://www.linkedin.com/in/daniel-atienza-rubi-1a93a4141/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-				<img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn"/>
-			  </a>
-
-			  <!--<a href="URL_DEL_ENLACE_UNITY_ASSETSTORE" target="_blank" rel="noopener noreferrer" title="Unity Asset Store">
-				<img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity Asset Store"/>
-			  </a>-->
-
-			  <a href="https://play.google.com/store/apps/dev?id=5790081229006091132" target="_blank" rel="noopener noreferrer" title="Google Play Store">
-				<img src="https://img.icons8.com/color/48/000000/google-play.png" alt="Google Play Store"/>
-			  </a>
-
-			  <a href="https://www.instagram.com/aligathor_production/" target="_blank" rel="noopener noreferrer" title="Instagram">
-				<img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"/>
-			  </a>
-
-			  <!-- Steam (reemplaza 'tu_usuario' por tu id de Steam o el enlace a tu perfil/app) 
-			  <a href="https://steamcommunity.com/id/tu_usuario" target="_blank" rel="noopener noreferrer" title="Steam">
-				<img src="https://img.icons8.com/ios-filled/50/ffffff/steam.png" alt="Steam"/>
-			  </a>-->
-
-			  <!-- Meta / Oculus (reemplaza por tu perfil de Oculus / enlace relevante de Meta) 
-			  <a href="https://www.oculus.com/users/tu_usuario" target="_blank" rel="noopener noreferrer" title="Meta / Oculus">
-				<img src="https://img.icons8.com/ios-filled/50/ffffff/oculus.png" alt="Meta / Oculus"/>
-			  </a>
-			</div>-->
-
+            <h1 id="main-title"></h1> 
+            <p class="subtitle" data-i18n="role">Software Developer | VR/AR Enthusiast</p>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/daniel-atienza-rubi-1a93a4141/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn"/>
+              </a>
+              <a href="https://assetstore.unity.com/publishers/127496" target="_blank" rel="noopener noreferrer" title="Unity Asset Store">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/unity.png" alt="Unity Asset Store"/>
+              </a>
+              <a href="https://play.google.com/store/apps/dev?id=5790081229006091132" target="_blank" rel="noopener noreferrer" title="Google Play Store">
+                <img src="https://img.icons8.com/color/48/000000/google-play.png" alt="Google Play Store"/>
+              </a>
+              <a href="https://www.instagram.com/aligathor_production/" target="_blank" rel="noopener noreferrer" title="Instagram">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"/>
+              </a>
+            </div>
         </header>
 
         <main>
             <nav class="quest-log nes-container">
-                <h2>REGISTRO DE MISIONES</h2>
+                <h2 data-i18n="quest_log">QUEST LOG</h2>
                 <ul>
-                    <li><a href="#sobre-mi" class="quest-link">> MISIÓN 1: Conoce al Héroe</a></li>
-                    <li><a href="#habilidades" class="quest-link">> MISIÓN 2: Revisa el Arsenal</a></li>
-                    <li><a href="#portfolio" class="quest-link">> MISIÓN 3: Explora sus Aventuras</a></li>
+                    <li><a href="#sobre-mi" class="quest-link" data-i18n="quest_1">> QUEST 1: Meet the Hero</a></li>
+                    <li><a href="#habilidades" class="quest-link" data-i18n="quest_2">> QUEST 2: Check Arsenal</a></li>
+                    <li><a href="#portfolio" class="quest-link" data-i18n="quest_3">> QUEST 3: Explore Adventures</a></li>
                 </ul>
             </nav>
 
             <section id="sobre-mi" class="nes-container">
-                <h2>> Sobre Mí</h2>
-                <p>Soy un estudiante de Ingeniería Informática apasionado por las nuevas tecnologías y el aprendizaje continuo.</p>
-                <p>Actualmente, desempeño el rol de CTO y lead de programación, donde me enfoco en la toma de decisiones estratégicas y en crear un ambiente de trabajo saludable y productivo.</p>
-                <p>Mi experiencia abarca el desarrollo con Unity, Photon y proyectos en Realidad Virtual.</p>
+                <h2 data-i18n="about_title">> About Me</h2>
+                <p data-i18n="about_p1">I am a Computer Engineering student passionate about new technologies and continuous learning.</p>
+                <p data-i18n="about_p2">Currently, I work as CTO and Lead Programmer, focusing on strategic decision-making and creating a healthy and productive work environment.</p>
+                <p data-i18n="about_p3">My experience covers development with Unity, Photon, and Virtual Reality projects.</p>
             </section>
 
             <section id="habilidades" class="nes-container">
-                <h2>> Arsenal de Habilidades</h2>
+                <h2 data-i18n="skills_title">> Skill Arsenal</h2>
                 <div class="skills-container">
                     <span class="skill-tag">Android Dev</span>
                     <span class="skill-tag">C#</span>
@@ -85,58 +75,58 @@
                     <span class="skill-tag">Mobile Games</span>
                     <span class="skill-tag">Game Testing</span>
                     <span class="skill-tag">VR/AR Dev</span>
-                    <span class="skill-tag">Inglés B2</span>
+                    <span class="skill-tag" data-i18n="skill_english">English B2</span>
                 </div>
             </section>
 
             <section id="portfolio" class="nes-container">
-                <h2>> Registro de Aventuras</h2>
+                <h2 data-i18n="portfolio_title">> Adventure Log</h2>
                 <div class="filter-buttons">
-                    <button class="nes-button active" data-filter="all">TODOS</button>
-                    <button class="nes-button" data-filter="experience">EXPERIENCIA</button>
-                    <button class="nes-button" data-filter="personal-project">PROYECTOS</button>
-                    <button class="nes-button" data-filter="education">ESTUDIOS</button>
+                    <button class="nes-button active" data-filter="all" data-i18n="btn_all">ALL</button>
+                    <button class="nes-button" data-filter="experience" data-i18n="btn_exp">EXPERIENCE</button>
+                    <button class="nes-button" data-filter="personal-project" data-i18n="btn_proj">PROJECTS</button>
+                    <button class="nes-button" data-filter="education" data-i18n="btn_edu">EDUCATION</button>
                 </div>
                  <div id="portfolio-grid">
                     
                     <div class="card" data-category="experience">
                         <div class="card-content">
-                            <span class="card-date">Oct 2024 - Presente</span>
+                            <span class="card-date" data-i18n="date_present">Oct 2024 - Present</span>
                             <h3>Virtual Revolution</h3>
-                            <p class="card-subtitle">CTO y Lead de Programación</p>
+                            <p class="card-subtitle" data-i18n="job_cto">CTO & Lead Programmer</p>
                         </div>
                     </div>
-					
-					<div class="card" data-category="personal-project">
+                    
+                    <div class="card" data-category="personal-project">
                         <div class="image-container">
-							<img src="galaxtron.png" alt="Galaxtron" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
+                            <img src="galaxtron.png" alt="Galaxtron" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
                         </div>
                         <div class="card-content">
                             <span class="card-date">2025</span>
                             <h3>Galaxtron</h3>
-                            <p class="card-subtitle">Proyecto de Virtual Revolution</p>
-                            <a href="https://vrvirtualrevolution.com/galaxtron" target="_blank" class="card-link nes-button is-error">Más detalles</a>
+                            <p class="card-subtitle" data-i18n="proj_vr_rev">Virtual Revolution Project</p>
+                            <a href="https://vrvirtualrevolution.com/galaxtron" target="_blank" class="card-link nes-button is-error" data-i18n="btn_details">More details</a>
                         </div>
                     </div>
-					
-					<div class="card" data-category="personal-project">
+                    
+                    <div class="card" data-category="personal-project">
                         <div class="image-container">
-							<img src="strikeforce.png" alt="Strike-Force" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
+                            <img src="strikeforce.png" alt="Strike-Force" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
                         </div>
                         <div class="card-content">
                             <span class="card-date">2025</span>
                             <h3>Strike Force</h3>
-                            <p class="card-subtitle">Proyecto de Virtual Revolution</p>
-                            <a href="https://vrvirtualrevolution.com/strike-force" target="_blank" class="card-link nes-button is-error">Más detalles</a>
+                            <p class="card-subtitle" data-i18n="proj_vr_rev">Virtual Revolution Project</p>
+                            <a href="https://vrvirtualrevolution.com/strike-force" target="_blank" class="card-link nes-button is-error" data-i18n="btn_details">More details</a>
                         </div>
                     </div>
-                     
+                      
                     <div class="card" data-category="personal-project">
                         <div class="card-content">
                             <span class="card-date">2025</span>
                             <h3>Clicker Hole 2</h3>
-                            <p class="card-subtitle">Proyecto Personal</p>
-                            <a href="https://play.google.com/store/apps/details?id=com.AligathorProductions.ClickerHole2" target="_blank" class="card-link nes-button is-primary">Ver en Google Play</a>
+                            <p class="card-subtitle" data-i18n="proj_personal">Personal Project</p>
+                            <a href="https://play.google.com/store/apps/details?id=com.AligathorProductions.ClickerHole2" target="_blank" class="card-link nes-button is-primary" data-i18n="btn_google">View on Google Play</a>
                         </div>
                     </div>
 
@@ -144,44 +134,41 @@
                         <div class="card-content">
                             <span class="card-date">2020</span>
                             <h3>Clicker Hole</h3>
-                            <p class="card-subtitle">Proyecto Personal</p>
-                            <a href="https://play.google.com/store/apps/details?id=com.AligathorCompany.ClickerHole" target="_blank" class="card-link nes-button is-primary">Ver en Google Play</a>
+                            <p class="card-subtitle" data-i18n="proj_personal">Personal Project</p>
+                            <a href="https://play.google.com/store/apps/details?id=com.AligathorCompany.ClickerHole" target="_blank" class="card-link nes-button is-primary" data-i18n="btn_google">View on Google Play</a>
                         </div>
                     </div>
 
                     <div class="card" data-category="education">
                         <div class="card-content">
-                            <span class="card-date">2020 - Presente</span>
-                            <h3>Universidad de Almería</h3>
-                            <p class="card-subtitle">Grado en Ingeniería Informática</p>
+                            <span class="card-date" data-i18n="date_2020_present">2020 - Present</span>
+                            <h3 data-i18n="edu_uni">University of Almería</h3>
+                            <p class="card-subtitle" data-i18n="edu_degree">Computer Engineering Degree</p>
                         </div>
                     </div>
 
                     <div class="card" data-category="experience">
                         <div class="card-content">
-                            <span class="card-date">Abr 2019 - Sep 2019</span>
+                            <span class="card-date" data-i18n="date_verajoker">Apr 2019 - Sep 2019</span>
                             <h3>VERAJOKER SL</h3>
-                            <p class="card-subtitle">Técnico informático</p>
+                            <p class="card-subtitle" data-i18n="job_tech">IT Technician</p>
                         </div>
                     </div>
 
                     <div class="card" data-category="experience">
                         <div class="card-content">
-                            <span class="card-date">Mar 2018 - Jun 2018</span>
+                            <span class="card-date" data-i18n="date_esistemas">Mar 2018 - Jun 2018</span>
                             <h3>e-sistemas.net</h3>
-                            <p class="card-subtitle">Técnico Informático</p>
+                            <p class="card-subtitle" data-i18n="job_tech">IT Technician</p>
                         </div>
                     </div>
 
                     <div class="card" data-category="personal-project">
-                        <div class="video-container">
-                             <iframe src="https://www.youtube.com/embed/nOeOQ-v_cfg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
                         <div class="card-content">
                             <span class="card-date">2017</span>
-                            <h3>Proyecto Unreal Engine</h3>
-                            <p class="card-subtitle">Proyecto Personal</p>
-                            <a href="https://www.youtube.com/watch?v=nOeOQ-v_cfg" target="_blank" class="card-link nes-button is-error">Ver en YouTube</a>
+                            <h3>Unreal Engine Project</h3>
+                            <p class="card-subtitle" data-i18n="proj_personal">Personal Project</p>
+                            <a href="https://www.youtube.com/watch?v=nOeOQ-v_cfg" target="_blank" class="card-link nes-button is-error" data-i18n="btn_youtube">Watch on YouTube</a>
                         </div>
                     </div>
 
@@ -189,15 +176,15 @@
                         <div class="card-content">
                             <span class="card-date">2016 - 2018</span>
                             <h3>CES S. Ramón y Cajal</h3>
-                            <p class="card-subtitle">Administración de Sistemas Informáticos en Red (Grado Superior)</p>
+                            <p class="card-subtitle" data-i18n="edu_asir">Network Computer Systems Administration</p>
                         </div>
                     </div>
 
                     <div class="card" data-category="experience">
                         <div class="card-content">
-                            <span class="card-date">Mar 2015 - Jun 2015</span>
+                            <span class="card-date" data-i18n="date_computerstore">Mar 2015 - Jun 2015</span>
                             <h3>Computer Store</h3>
-                            <p class="card-subtitle">Técnico Informático</p>
+                            <p class="card-subtitle" data-i18n="job_tech">IT Technician</p>
                         </div>
                     </div>
 
@@ -205,7 +192,7 @@
                         <div class="card-content">
                             <span class="card-date">2013 - 2015</span>
                             <h3>IES Padre Suarez</h3>
-                            <p class="card-subtitle">Sistemas Microinformáticos y Redes (Grado Medio)</p>
+                            <p class="card-subtitle" data-i18n="edu_smr">Microcomputer Systems and Networks</p>
                         </div>
                     </div>
 
@@ -214,12 +201,7 @@
         </main>
         
         <footer class="nes-container">
-            <!-- <h2>> Logros Desbloqueados</h2>
-            <div id="achievements-unlocked">
-                <span class="achievement-locked">???</span>
-                <span class="achievement-locked">???</span>
-            </div> -->
-            <p>© 2025 Daniel Atienza Rubi.</p>
+            <p>© 2026 Daniel Atienza Rubi.</p>
         </footer>
     </div>
     
