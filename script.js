@@ -195,16 +195,13 @@ document.addEventListener('DOMContentLoaded', () => {
         applyFilter(defaultActiveBtn.dataset.filter);
     }
 
-/* ---------------------------------------------------- */
-    /* BACKGROUND FRAME ANIMATION (CON CANVAS)              */
+	/* ---------------------------------------------------- */
+    /* BACKGROUND FRAME ANIMATION (CON CANVAS SILENCIOSO)   */
     /* ---------------------------------------------------- */
     const canvas = safeGet('bg-canvas');
-    const loadingScreen = safeGet('loading-screen');
-    const loadingPct = safeGet('loading-pct');
     const ctx = canvas ? canvas.getContext('2d') : null;
 
     if (canvas) {
-        // Configura la resolución interna del canvas al tamaño de tus imágenes
         canvas.width = 1280;
         canvas.height = 720;
     }
@@ -240,41 +237,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     (async function initBackground() {
         const pattern = await detectFramePattern();
-        if (!pattern) {
-            if (loadingScreen) loadingScreen.classList.add('hidden');
-            return;
-        }
+        if (!pattern) return;
 
         const { prefix, ext, pad } = pattern;
         const makeUrl = i => `${prefix}${String(i).padStart(pad,'0')}.${ext}`;
 
         const preloaded = new Map();
-        let loadedCount = 0;
-        const maxParallel = 10; // Descargar 10 imágenes a la vez
-
-        function updateProgress() {
-            loadedCount++;
-            if (loadingPct) {
-                const percent = Math.floor((loadedCount / totalFrames) * 100);
-                loadingPct.textContent = percent;
-            }
-            // Cuando cargue suficientes imágenes (por ejemplo, el 100%), ocultamos la pantalla de carga
-            if (loadedCount >= totalFrames) {
-                if (loadingScreen) loadingScreen.classList.add('hidden');
-            }
-        }
+        const maxParallel = 10;
+        let firstFrameDrawn = false;
 
         async function downloadFrame(idx) {
             try {
                 const img = await loadImagePromise(makeUrl(idx));
                 preloaded.set(idx, img);
-                updateProgress();
-                // Dibujar el primer frame nada más cargarlo
+                
+                // Si es el primer frame, lo dibujamos y mostramos el canvas con fundido
                 if (idx === 1 && ctx) {
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    if (!firstFrameDrawn) {
+                        canvas.classList.add('loaded');
+                        firstFrameDrawn = true;
+                    }
                 }
-            } catch (err) {
-                updateProgress(); // Contarlo aunque falle para no bloquear
+            } catch (err) { 
+                // Fallos silenciados en consola para una experiencia limpia
             }
         }
 
@@ -290,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
             await Promise.all(workers);
         }
 
-        // Iniciar precarga sin bloquear el resto de la web
+        // Iniciar precarga sin bloquear la página
         preloadAllFrames();
 
         let lastIndex = -1;
@@ -305,7 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const pre = preloaded.get(idx);
             if (pre) {
-                // Borrar el canvas y dibujar la nueva imagen instantáneamente
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(pre, 0, 0, canvas.width, canvas.height);
             }
