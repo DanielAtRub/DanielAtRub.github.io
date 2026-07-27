@@ -1,186 +1,131 @@
-/* --- ESTILOS GLOBALES Y TEMA DEL JUEGO --- */
+/* --- VARIABLES DEL TEMA MODERNO --- */
 :root {
-    --bg-color: #1a1a2e;
-    --primary-color: #00ff9d;
-    --secondary-color: #f700ff;
-    --text-color: #e0e0e0;
-    --container-bg: #162447;
-    --border-color: #00ff9d;
-    --button-primary: #209cee;
-    --button-error: #e74c3c;
+    --bg-color: #0f172a;          /* Fondo oscuro profundo */
+    --surface-color: rgba(30, 41, 59, 0.7); /* Tarjetas con transparencia */
+    --surface-hover: rgba(51, 65, 85, 0.9);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #38bdf8;      /* Azul moderno */
+    --accent-hover: #0284c7;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
 body {
-    font-family: 'Press Start 2P', cursive;
+    font-family: var(--font-main);
     background-color: var(--bg-color);
-    background-image: url('backgrounds/frame_001.jpg'); /* 👈 tu frame inicial */
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    color: var(--text-color);
-    line-height: 1.8;
-    font-size: 14px;
-    padding-top: 60px;
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
 }
 
-
-.social-links {
-  display: flex;
-  justify-content: center;  /* 🔹 centra horizontalmente */
-  align-items: center;      /* centra verticalmente si cambia la altura */
-  flex-wrap: wrap;          /* permite varias líneas si hay muchos iconos */
-  gap: 12px;                /* espacio entre iconos */
-  line-height: 0;           /* evita líneas azules entre ellos */
-  margin-top: 16px;         /* separa del contenido superior */
-}
-
-.social-links a {
-  text-decoration: none;    /* sin subrayado */
-  outline: none;
-  display: inline-flex;     /* centra cada imagen dentro del enlace */
-  align-items: center;
-  justify-content: center;
-  padding: 6px;
-  border-radius: 6px;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-}
-
-.social-links img {
-  display: block;
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  border: 0;
-  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45));
-  transition: transform 150ms ease, opacity 150ms ease;
-}
-
-.social-links a:hover img,
-.social-links a:focus img {
-  transform: translateY(-4px) scale(1.06);
-  opacity: 0.95;
-}
-
-.social-links a:focus-visible {
-  box-shadow: 0 0 0 3px rgba(0,240,255,0.12);
-  outline: none;
-}
-
-/* --- INTERFAZ DEL JUEGO (XP BAR) --- */
-.game-ui { 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    background-color: #10101a; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 10px 20px; 
-    border-bottom: 3px solid var(--border-color); 
-    z-index: 1000; 
-    font-size: 12px; 
-}
-.ui-right-container {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Espacio entre barra XP y botón */
-}
-.nes-button.is-small {
-    padding: 4px 8px;
-    font-size: 10px;
-    margin: 0;
-    min-width: 40px; /* Ancho mínimo para que no baile al cambiar texto */
-    text-align: center;
-}
-.xp-bar-container { 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-}
-.xp-bar-background { width: 200px; height: 20px; background-color: #333; border: 2px solid var(--text-color); }
-.xp-bar-progress { width: 0%; height: 100%; background-color: var(--secondary-color); transition: width 0.3s ease-out; }
-
-/* --- CONTENEDOR PRINCIPAL Y ESTILO NES --- */
-.container { max-width: 900px; margin: 0 auto; padding: 2rem; }
-.nes-container { background-color: var(--container-bg); border: 4px solid var(--text-color); padding: 1.5rem; margin-bottom: 2rem; box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3); }
-
-/* --- HEADER Y TÍTULO ANIMADO --- */
-header { text-align: center; margin-bottom: 3rem; }
-#main-title { color: var(--primary-color); font-size: 2rem; margin-bottom: 0.5rem; display: inline-block; }
-#main-title::after { content: '_'; animation: blink 1s step-end infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-header .subtitle { color: #aaa; font-size: 0.8rem; margin-bottom: 1.5rem; }
-.social-links img { width: 32px; filter: grayscale(1) brightness(2); transition: transform 0.2s; }
-.social-links a:hover img { transform: scale(1.2) rotate(10deg); }
-
-/* --- NAVEGACIÓN (QUEST LOG) Y SECCIONES --- */
-.quest-log ul { list-style: none; }
-.quest-log a { color: var(--text-color); text-decoration: none; transition: all 0.2s; }
-.quest-log a:hover { color: var(--primary-color); padding-left: 10px; }
-h2 { color: var(--secondary-color); font-size: 1.2rem; margin-bottom: 1rem; }
-p, .card-subtitle { font-size: 0.9rem; }
-.skills-container { display: flex; flex-wrap: wrap; gap: 10px; }
-.skill-tag { background-color: var(--bg-color); padding: 8px 12px; border: 2px solid var(--text-color); }
-
-/* --- PORTFOLIO: FILTROS Y TARJETAS --- */
-.filter-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 2rem; }
-.nes-button { font-family: 'Press Start 2P', cursive; background-color: #555; color: white; padding: 10px 15px; border: 2px solid white; text-decoration: none; display: inline-block; cursor: pointer; }
-.nes-button:hover { background-color: #777; }
-.nes-button.active { background-color: var(--primary-color); color: var(--bg-color); }
-.nes-button.is-primary { background-color: var(--button-primary); }
-.nes-button.is-error { background-color: var(--button-error); }
-#portfolio-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
-.card { background-color: #10101a; border: 3px solid var(--text-color); overflow: hidden; }
-.card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid var(--text-color); }
-.card-content { padding: 1.5rem; }
-.card h3 { color: var(--primary-color); font-size: 1rem; }
-.card-date { font-size: 0.8rem; color: #aaa; margin-bottom: 0.5rem; }
-.card-link { margin-top: 1rem; font-size: 0.8rem; }
-.video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-bottom: 3px solid var(--text-color); }
-.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-
-/* --- FOOTER Y LOGROS --- */
-footer { text-align: center; }
-#achievements-unlocked span { display: inline-block; padding: 5px 10px; margin: 5px; border: 2px solid #555; background: #333; color: #777; }
-#achievements-unlocked span.unlocked { border-color: var(--primary-color); background-color: var(--bg-color); color: var(--primary-color); }
-.achievement-toast { position: fixed; bottom: -300px; left: 50%; transform: translateX(-50%); background-color: var(--primary-color); color: var(--bg-color); padding: 15px 25px; border: 3px solid var(--bg-color); font-size: 1rem; z-index: 2000; transition: bottom 0.5s ease-in-out; }
-.achievement-toast.show { bottom: 20px; }
-
-/* Fondo animado (mantener así) */
+/* --- FONDO ANIMADO --- */
 #animated-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    /* quita transition larga para evitar parpadeo; opcional */
-    transition: opacity 0.15s linear;
-    opacity: 1;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+    background-size: cover; background-position: center;
+    transition: opacity 0.1s linear;
+}
+.bg-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(15,23,42,0.8), rgba(15,23,42,0.95)); /* Hace el texto muy legible */
 }
 
-/* Asegura que los contenedores muestren el fondo detrás: usa rgba con alpha */
-.nes-container {
-    background-color: rgba(22,36,71,0.72); /* antes era sólido; ahora semitransparente */
-    border: 4px solid var(--text-color);
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+/* --- NAVEGACIÓN MODERNA (GLASSMORPHISM) --- */
+.navbar {
+    position: fixed; top: 0; left: 0; width: 100%;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(12px); /* Efecto cristal */
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
 }
-
-/* Si quieres que el .container sea totalmente transparente (opcional) */
-.container {
-    background: transparent;
-    position: relative;
-    z-index: 0;
+.nav-content {
+    max-width: 1000px; margin: 0 auto; padding: 16px 24px;
+    display: flex; justify-content: space-between; align-items: center;
 }
+.nav-logo { font-weight: 800; font-size: 1.2rem; color: var(--text-primary); letter-spacing: -0.5px; }
+.nav-links { list-style: none; display: flex; gap: 24px; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.3s; }
+.nav-links a:hover { color: var(--accent-color); }
+.btn-lang {
+    background: transparent; color: var(--text-primary);
+    border: 1px solid var(--border-color); border-radius: 6px;
+    padding: 6px 12px; font-family: inherit; font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.btn-lang:hover { background: var(--border-color); }
 
-/* Asegúrate de que game-ui esté por encima */
-.game-ui { z-index: 1000; position: fixed; top: 0; left: 0; width: 100%; }
+/* Progress Bar minimalista */
+.scroll-progress-container { width: 100%; height: 3px; background: transparent; }
+.scroll-progress-bar { width: 0%; height: 100%; background: var(--accent-color); transition: width 0.1s ease-out; }
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.container { max-width: 1000px; margin: 0 auto; padding: 100px 24px 40px; }
+
+/* --- HEADER / HERO --- */
+.hero-section { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; margin-bottom: 4rem; }
+#main-title { font-size: 3rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+#main-title::after { content: '|'; font-weight: 300; color: var(--accent-color); animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.subtitle { font-size: 1.25rem; color: var(--text-secondary); font-weight: 300; margin-bottom: 32px; }
+
+.social-links { display: flex; gap: 16px; }
+.social-links a { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: var(--surface-color); border: 1px solid var(--border-color); transition: all 0.3s ease; }
+.social-links img { width: 22px; filter: brightness(0.9); transition: filter 0.3s; }
+.social-links a:hover { transform: translateY(-3px); background: var(--surface-hover); border-color: var(--accent-color); }
+.social-links a:hover img { filter: brightness(1); }
+
+/* --- SECCIONES GENÉRICAS --- */
+.content-section { margin-bottom: 5rem; }
+.content-section h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 24px; color: var(--text-primary); display: flex; align-items: center; gap: 12px; }
+.content-section h2::before { content: ""; width: 8px; height: 24px; background: var(--accent-color); border-radius: 4px; display: inline-block; }
+.section-card { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px; backdrop-filter: blur(8px); }
+.section-card p { color: var(--text-secondary); margin-bottom: 16px; font-size: 1.05rem; }
+.section-card p:last-child { margin-bottom: 0; }
+
+/* --- HABILIDADES --- */
+.skills-container { display: flex; flex-wrap: wrap; gap: 12px; }
+.skill-tag { background: rgba(56, 189, 248, 0.1); color: var(--accent-color); border: 1px solid rgba(56, 189, 248, 0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; transition: all 0.3s; }
+.skill-tag:hover { background: var(--accent-color); color: #fff; transform: translateY(-2px); }
+
+/* --- FILTROS DE PORTAFOLIO --- */
+.filter-buttons { display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
+.filter-btn { background: transparent; color: var(--text-secondary); border: 1px solid var(--border-color); padding: 8px 20px; border-radius: 24px; font-family: inherit; font-size: 0.95rem; cursor: pointer; transition: all 0.3s; }
+.filter-btn:hover { border-color: var(--text-primary); color: var(--text-primary); }
+.filter-btn.active { background: var(--text-primary); color: var(--bg-color); border-color: var(--text-primary); font-weight: 600; }
+
+/* --- GRID DE PORTAFOLIO (CARDS) --- */
+#portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+.card { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; backdrop-filter: blur(8px); }
+.card:hover { transform: translateY(-5px); border-color: var(--accent-color); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); }
+.image-container { height: 180px; width: 100%; overflow: hidden; border-bottom: 1px solid var(--border-color); }
+.image-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.card:hover .image-container img { transform: scale(1.05); }
+.card-content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+.card-date { font-size: 0.85rem; color: var(--accent-color); font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; color: var(--text-primary); }
+.card-subtitle { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px; flex-grow: 1; }
+
+/* Botones dentro de las tarjetas */
+.btn-primary, .btn-secondary { display: inline-block; text-align: center; padding: 10px 0; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: all 0.3s; width: 100%; border: none; cursor: pointer; }
+.btn-primary { background: var(--text-primary); color: var(--bg-color); }
+.btn-primary:hover { background: var(--accent-color); color: #fff; }
+.btn-secondary { background: rgba(255,255,255,0.05); color: var(--text-primary); border: 1px solid var(--border-color); }
+.btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: var(--text-primary); }
+
+/* --- FOOTER & TOAST --- */
+.site-footer { text-align: center; padding: 40px 0; color: var(--text-secondary); font-size: 0.9rem; border-top: 1px solid var(--border-color); margin-top: 40px; }
+.achievement-toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: var(--surface-hover); color: var(--text-primary); padding: 16px 24px; border-radius: 30px; font-weight: 500; font-size: 0.95rem; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid var(--border-color); z-index: 2000; transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; gap: 10px; }
+.achievement-toast::before { content: "✨"; }
+.achievement-toast.show { bottom: 30px; }
+
+/* Responsive ajustes */
+@media (max-width: 768px) {
+    .nav-links { display: none; /* En móvil ocultamos los links o puedes añadir un menu hamburguesa */ }
+    #main-title { font-size: 2.2rem; }
+    .hero-section { min-height: 50vh; }
+}
