@@ -1,4 +1,3 @@
-// script.js — detección automática de rutas + fondo por frames + i18n + toasts de logros
 document.addEventListener('DOMContentLoaded', () => {
 
     const safeGet = id => {
@@ -9,100 +8,120 @@ document.addEventListener('DOMContentLoaded', () => {
     const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
 
     /* ---------------------------------------------------- */
-    /* SISTEMA DE IDIOMAS (I18N)            */
+    /* LOGICA TEMA OSCURO / CLARO                           */
     /* ---------------------------------------------------- */
-    
-	const translations = {
-		en: {
-			player: "Player: Daniel Atienza",
-			main_title: "Daniel Atienza: Portfolio",
-			role: "Software Developer | VR/AR Enthusiast",
-			quest_log: "QUEST LOG",
-			quest_1: "> QUEST 1: Meet the Hero",
-			quest_2: "> QUEST 2: Check Arsenal",
-			quest_3: "> QUEST 3: Explore Adventures",
-			about_title: "> About Me",
-			about_p1: "I am a Computer Engineer with a strong passion for emerging technologies and continuous learning.",
-			about_p2: "Currently, I work as CTO and Lead Programmer, driving strategic decision-making and fostering a healthy, productive team environment.",
-			about_p3: "My experience covers development with Unity, Photon, and Virtual Reality projects.",
-			skills_title: "> Skill Arsenal",
-			skill_english: "English B2",
-			portfolio_title: "> Adventure Log",
-			btn_all: "ALL",
-			btn_exp: "EXPERIENCE",
-			btn_proj: "PROJECTS",
-			btn_edu: "EDUCATION",
-			date_present: "Oct 2024 - Present",
-			job_cto: "CTO & Lead Programmer",
-			proj_vr_rev: "Virtual Revolution Project",
-			btn_details: "More details",
-			proj_personal: "Personal Project",
-			btn_google: "View on Google Play",
-			date_uni: "2020 - 2024",
-			edu_uni: "University of Almería",
-			edu_degree: "Computer Engineering Degree",
-			date_verajoker: "Apr 2019 - Sep 2019",
-			job_tech: "IT Technician",
-			date_esistemas: "Mar 2018 - Jun 2018",
-			btn_youtube: "Watch on YouTube",
-			edu_asir: "Network Computer Systems Administration",
-			date_computerstore: "Mar 2015 - Jun 2015",
-			edu_smr: "Microcomputer Systems and Networks",
-			ach_start: "Start of the journey!",
-			ach_mid: "Halfway there!",
-			ach_end: "Goal reached!",
-			ach_unlocked: "Achievement Unlocked: "
-		},
-		es: {
-			player: "Jugador: Daniel Atienza",
-			main_title: "Daniel Atienza: Portafolio",
-			role: "Desarrollador de Software | Apasionado por VR/AR",
-			quest_log: "REGISTRO DE MISIONES",
-			quest_1: "> MISIÓN 1: Conoce al Héroe",
-			quest_2: "> MISIÓN 2: Revisa el Arsenal",
-			quest_3: "> MISIÓN 3: Explora Aventuras",
-			about_title: "> Sobre Mí",
-			about_p1: "Soy Ingeniero Informático, un apasionado de las nuevas tecnologías y del aprendizaje continuo.",
-			about_p2: "Actualmente, me desempeño como CTO y Lead Programmer, liderando la toma de decisiones estratégicas y promoviendo un entorno de trabajo saludable y productivo.",
-			about_p3: "Mi experiencia abarca el desarrollo con Unity, Photon y proyectos en Realidad Virtual.",
-			skills_title: "> Arsenal de Habilidades",
-			skill_english: "Inglés B2",
-			portfolio_title: "> Registro de Aventuras",
-			btn_all: "TODOS",
-			btn_exp: "EXPERIENCIA",
-			btn_proj: "PROYECTOS",
-			btn_edu: "ESTUDIOS",
-			date_present: "Oct 2024 - Presente",
-			job_cto: "CTO y Lead de Programación",
-			proj_vr_rev: "Proyecto de Virtual Revolution",
-			btn_details: "Más detalles",
-			proj_personal: "Proyecto Personal",
-			btn_google: "Ver en Google Play",
-			date_uni: "2020 - 2024",
-			edu_uni: "Universidad de Almería",
-			edu_degree: "Grado en Ingeniería Informática",
-			date_verajoker: "Abr 2019 - Sep 2019",
-			job_tech: "Técnico Informático",
-			date_esistemas: "Mar 2018 - Jun 2018",
-			btn_youtube: "Ver en YouTube",
-			edu_asir: "Administración de Sistemas Informáticos en Red",
-			date_computerstore: "Mar 2015 - Jun 2015",
-			edu_smr: "Sistemas Microinformáticos y Redes",
-			ach_start: "¡Comienzo del viaje!",
-			ach_mid: "¡Mitad del camino!",
-			ach_end: "¡Meta alcanzada!",
-			ach_unlocked: "Logro Desbloqueado: "
-		}
-	};
+    const themeToggleBtn = safeGet('theme-toggle');
+    let currentTheme = localStorage.getItem('site-theme') || 'dark'; // Oscuro por defecto
 
-    let currentLang = localStorage.getItem('site-lang') || 'en'; // Inglés por defecto
+    function updateTheme(theme) {
+        currentTheme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('site-theme', theme);
+        if (themeToggleBtn) {
+            themeToggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    }
+    
+    updateTheme(currentTheme); // Inicializar
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            updateTheme(newTheme);
+        });
+    }
+
+    /* ---------------------------------------------------- */
+    /* SISTEMA DE IDIOMAS (I18N) PROFESIONAL                */
+    /* ---------------------------------------------------- */
+    const translations = {
+        en: {
+            player: "Daniel Atienza",
+            main_title: "Daniel Atienza",
+            role: "Software Developer | VR/AR Enthusiast",
+            quest_1: "About Me",
+            quest_2: "Skills",
+            quest_3: "Portfolio",
+            about_title: "About Me",
+            about_p1: "I am a Computer Engineer with a strong passion for emerging technologies and continuous learning.",
+            about_p2: "Currently, I work as CTO and Lead Programmer, driving strategic decision-making and fostering a healthy, productive team environment.",
+            about_p3: "My experience covers development with Unity, Photon, and Virtual Reality projects.",
+            skills_title: "Skills & Technologies",
+            skill_english: "English B2",
+            portfolio_title: "Experience & Projects",
+            btn_all: "All",
+            btn_exp: "Experience",
+            btn_proj: "Projects",
+            btn_edu: "Education",
+            date_present: "Oct 2024 - Present",
+            job_cto: "CTO & Lead Programmer",
+            proj_vr_rev: "Virtual Revolution Project",
+            btn_details: "More details \u2192",
+            proj_personal: "Personal Project",
+            btn_google: "View on Google Play \u2192",
+            date_uni: "2020 - 2025",
+            edu_uni: "University of Almería",
+            edu_degree: "Computer Engineering Degree",
+            date_verajoker: "Apr 2019 - Sep 2019",
+            job_tech: "IT Technician",
+            date_esistemas: "Mar 2018 - Jun 2018",
+            btn_youtube: "Watch on YouTube \u2192",
+            edu_asir: "Network Computer Systems Administration",
+            date_computerstore: "Mar 2015 - Jun 2015",
+            edu_smr: "Microcomputer Systems and Networks",
+            ach_start: "Welcome to my portfolio",
+            ach_mid: "Reviewing experience...",
+            ach_end: "Thanks for reading!",
+            ach_unlocked: ""
+        },
+        es: {
+            player: "Daniel Atienza",
+            main_title: "Daniel Atienza",
+            role: "Desarrollador de Software | Entusiasta VR/AR",
+            quest_1: "Sobre mí",
+            quest_2: "Habilidades",
+            quest_3: "Portafolio",
+            about_title: "Sobre mí",
+            about_p1: "Soy Ingeniero Informático, un apasionado de las nuevas tecnologías y del aprendizaje continuo.",
+            about_p2: "Actualmente, me desempeño como CTO y Lead Programmer, liderando la toma de decisiones estratégicas y promoviendo un entorno de trabajo saludable y productivo.",
+            about_p3: "Mi experiencia abarca el desarrollo con Unity, Photon y proyectos en Realidad Virtual.",
+            skills_title: "Habilidades y Tecnologías",
+            skill_english: "Inglés B2",
+            portfolio_title: "Experiencia y Proyectos",
+            btn_all: "Todo",
+            btn_exp: "Experiencia",
+            btn_proj: "Proyectos",
+            btn_edu: "Formación",
+            date_present: "Oct 2024 - Presente",
+            job_cto: "CTO y Lead de Programación",
+            proj_vr_rev: "Proyecto de Virtual Revolution",
+            btn_details: "Más detalles \u2192",
+            proj_personal: "Proyecto Personal",
+            btn_google: "Ver en Google Play \u2192",
+            date_uni: "2020 - 2025",
+            edu_uni: "Universidad de Almería",
+            edu_degree: "Grado en Ingeniería Informática",
+            date_verajoker: "Abr 2019 - Sep 2019",
+            job_tech: "Técnico Informático",
+            date_esistemas: "Mar 2018 - Jun 2018",
+            btn_youtube: "Ver en YouTube \u2192",
+            edu_asir: "Administración de Sistemas Informáticos en Red",
+            date_computerstore: "Mar 2015 - Jun 2015",
+            edu_smr: "Sistemas Microinformáticos y Redes",
+            ach_start: "Bienvenido a mi portafolio",
+            ach_mid: "Revisando experiencia...",
+            ach_end: "¡Gracias por leer!",
+            ach_unlocked: ""
+        }
+    };
+
+    let currentLang = localStorage.getItem('site-lang') || 'en';
 
     function updateLanguage(lang) {
         currentLang = lang;
         localStorage.setItem('site-lang', lang);
         document.documentElement.lang = lang;
 
-        // Actualizar textos simples del DOM
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (translations[lang][key]) {
@@ -110,15 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Actualizar texto del botón
         const btn = safeGet('lang-toggle');
         if (btn) btn.textContent = lang === 'en' ? 'ES' : 'EN';
-
-        // Reiniciar efecto máquina de escribir
         startTypewriter();
     }
 
-    // Listener para el botón de idioma
     const langBtn = safeGet('lang-toggle');
     if (langBtn) {
         langBtn.addEventListener('click', () => {
@@ -127,17 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ---------------- TYPER TITLE (Adaptado a Idioma) ---------------- */
     let typerTimeout;
     function startTypewriter() {
         const titleElement = safeGet('main-title');
         if (titleElement) {
-            if (typerTimeout) clearTimeout(typerTimeout); // Limpiar anterior si existe
-            
+            if (typerTimeout) clearTimeout(typerTimeout); 
             const titleText = translations[currentLang].main_title;
             titleElement.textContent = "";
             let ci = 0;
-            
             (function type(){
                 if (ci < titleText.length) {
                     titleElement.textContent += titleText.charAt(ci++);
@@ -146,12 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
             })();
         }
     }
-
-    // Inicializar idioma al cargar
     updateLanguage(currentLang);
 
     /* ---------------- SMOOTH LINKS ---------------- */
-    document.querySelectorAll('.quest-link').forEach(link=>{
+    document.querySelectorAll('.nav-link').forEach(link=>{
         link.addEventListener('click', function(e){
             e.preventDefault();
             const t = document.querySelector(this.getAttribute('href'));
@@ -159,25 +169,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* --------------- FILTER PORTFOLIO -------------- */
+/* --------------- FILTER PORTFOLIO -------------- */
     const filterButtons = document.querySelectorAll('.filter-buttons button');
     const portfolioCards = document.querySelectorAll('#portfolio-grid .card');
-    filterButtons.forEach(btn=>{
-        btn.addEventListener('click', ()=>{
-            filterButtons.forEach(b=>b.classList.remove('active'));
+
+    // Función para aplicar el filtro visualmente
+    function applyFilter(filter) {
+        portfolioCards.forEach(card => {
+            card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'flex' : 'none';
+        });
+    }
+
+    // Eventos de click para los botones
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            const filter = btn.dataset.filter;
-            portfolioCards.forEach(card=>{
-                card.style.display = (filter==='all' || card.dataset.category===filter) ? 'block' : 'none';
-            });
+            applyFilter(btn.dataset.filter);
         });
     });
 
+    // Ejecutar el filtro activo por defecto al cargar la página
+    const defaultActiveBtn = document.querySelector('.filter-btn.active');
+    if (defaultActiveBtn) {
+        applyFilter(defaultActiveBtn.dataset.filter);
+    }
+
     /* ---------------------------------------------------- */
-    /* BACKGROUND FRAME ANIMATION (Tu código original) */
+    /* BACKGROUND FRAME ANIMATION (Intacto)                 */
     /* ---------------------------------------------------- */
     const animatedBackgroundDiv = safeGet('animated-background');
-    const useImgElement = true; // menos flicker
+    const useImgElement = true;
     let bgImg = null;
     
     if (animatedBackgroundDiv && useImgElement) {
@@ -185,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!bgImg) {
             bgImg = document.createElement('img');
             bgImg.id = 'bg-img';
-            bgImg.alt = 'fondo animado';
+            bgImg.alt = '';
             bgImg.draggable = false;
             bgImg.style.width = '100vw';
             bgImg.style.height = '100vh';
@@ -197,19 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (!animatedBackgroundDiv) {
-        console.warn('[script.js] #animated-background no existe — fondo animado desactivado.');
-    }
-
     const totalFrames = 671; 
-    const candidatePrefixes = [
-        'backgrounds/frame_', 
-        'backgrounds/bg_frame_',
-        'backgrounds/frames/frame_',
-        'frame_',              
-        'bg_frame_',
-        'frames/frame_'
-    ];
+    const candidatePrefixes = ['backgrounds/frame_','backgrounds/bg_frame_','backgrounds/frames/frame_','frame_','bg_frame_','frames/frame_'];
     const candidateExts = ['png','jpg','webp'];
     const candidatePads = [3,4]; 
 
@@ -227,76 +238,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function detectFramePattern() {
-        const tried = [];
         for (const prefix of candidatePrefixes) {
             for (const ext of candidateExts) {
                 for (const pad of candidatePads) {
                     const url = `${prefix}${String(1).padStart(pad,'0')}.${ext}`;
-                    tried.push(url);
                     try {
                         await loadImagePromise(url, 3000);
-                        console.info(`[script.js] patrón detectado: prefix='${prefix}', ext='${ext}', pad=${pad} (ejemplo: ${url})`);
                         return { prefix, ext, pad };
                     } catch (err) { }
                 }
             }
         }
-        console.warn('[script.js] No se detectó patrón de frames. URLs probadas:', tried.slice(0,30));
         return null;
     }
 
-    // INICIO DEL PRELOADER Y ANIMACION
     (async function initBackground() {
         const pattern = await detectFramePattern();
-        if (!pattern) return; // Fallback fondo plano
+        if (!pattern) return;
 
         const { prefix, ext, pad } = pattern;
         const makeUrl = i => `${prefix}${String(i).padStart(pad,'0')}.${ext}`;
 
-        // ---------- PRELOAD: CARGAR TODOS LOS FRAMES ----------
         const preloaded = new Map();
-        let failedCount = 0;
         const maxParallel = 8;
-        const retryOnFail = 1;
 
         function downloadFrame(idx, attempt = 0) {
             return loadImagePromise(makeUrl(idx), 15000)
-                .then(img => {
-                    preloaded.set(idx, img);
-                    return { idx, ok: true };
-                })
+                .then(img => { preloaded.set(idx, img); return { idx, ok: true }; })
                 .catch(err => {
-                    if (attempt < retryOnFail) return downloadFrame(idx, attempt + 1);
-                    failedCount++;
-                    console.warn(`[preload] fallo frame ${idx}: ${err.message}`);
+                    if (attempt < 1) return downloadFrame(idx, attempt + 1);
                     return { idx, ok: false };
                 });
         }
 
         async function preloadAllFrames() {
-            console.info('[preload] iniciando precarga de todos los frames, total=', totalFrames);
             const indices = Array.from({length: totalFrames}, (_,i)=>i+1);
-            const results = [];
             let cursor = 0;
             const workers = new Array(Math.min(maxParallel, totalFrames)).fill(0).map(async () => {
                 while (cursor < indices.length) {
                     const idx = indices[cursor++];
-                    const res = await downloadFrame(idx);
-                    results.push(res);
+                    await downloadFrame(idx);
                 }
             });
-
             await Promise.all(workers);
-            const okCount = results.filter(r=>r.ok).length;
-            console.info(`[preload] terminado. ok=${okCount}, failed=${failedCount}`);
             if (preloaded.has(1) && bgImg) bgImg.src = preloaded.get(1).src;
-            window.__preloadedFrames = preloaded;
         }
 
-        // Lanzar preload
-        preloadAllFrames().catch(e => console.error('[preload] error fatal:', e));
+        preloadAllFrames().catch(e => console.error(e));
 
-        // Función de actualización expuesta globalmente para el scroll
         let lastIndex = -1;
         function updateByPercent(pct) {
             if (!animatedBackgroundDiv) return;
@@ -315,18 +304,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (!curSrc.endsWith(url)) {
                     bgImg.src = url;
                 }
-            } else if (animatedBackgroundDiv) {
-                const wanted = `url("${url}")`;
-                if (animatedBackgroundDiv.style.backgroundImage !== wanted) animatedBackgroundDiv.style.backgroundImage = wanted;
             }
         }
         window.__updateAnimatedBackground = updateByPercent;
-
-        if (preloaded.get(1) && preloaded.get(1).src && bgImg) bgImg.src = preloaded.get(1).src;
-        console.info('[script.js] fondo por frames listo.');
     })();
 
-    /* ------------- XP BAR + SCROLL THROTTLING ------------- */
+    /* ------------- SCROLL PROGRESS + ACHIEVEMENTS ------------- */
     const xpBar = safeGet('xp-bar');
     function getScrollPercent() {
         const doc = document.documentElement;
@@ -341,8 +324,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ticking = false;
                 const pct = getScrollPercent();
                 if (xpBar) xpBar.style.width = `${Math.min(pct,100)}%`;
-                
-                // Actualizar fondo si la función existe
                 if (typeof window.__updateAnimatedBackground === 'function') {
                     window.__updateAnimatedBackground(pct);
                 }
@@ -355,9 +336,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', onScroll);
     onScroll(); 
 
-    /* ----------------- LOGROS (Adaptados a Idioma) ----------------- */
+    /* ----------------- NOTIFICATIONS (Toasts) ----------------- */
     const achievementToastEl = safeGet('achievement-toast');
-    // Ahora achievementList guarda la CLAVE de traducción, no el texto directo
     const achievementList = {
         'inicio': {unlocked:false, threshold:0, keyName: "ach_start"},
         'mitad':  {unlocked:false, threshold:50, keyName: "ach_mid"},
@@ -365,7 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function showAchievementToast(keyName) {
-        // Construimos el mensaje usando el diccionario actual
         const msgPrefix = translations[currentLang].ach_unlocked;
         const msgBody = translations[currentLang][keyName];
         const text = `${msgPrefix}${msgBody}`;
@@ -374,26 +353,13 @@ document.addEventListener('DOMContentLoaded', () => {
             achievementToastEl.textContent = text;
             achievementToastEl.classList.add('show');
             setTimeout(()=> achievementToastEl.classList.remove('show'), 3000);
-            return;
         }
-        
-        // Fallback si no hay elemento HTML para el toast
-        const tmp = document.createElement('div');
-        tmp.textContent = text;
-        Object.assign(tmp.style, {
-            position:'fixed', left:'50%', bottom:'24px', transform:'translateX(-50%)',
-            background:'#00ff9d', color:'#001', padding:'10px 16px',
-            borderRadius:'6px', zIndex:3000, fontFamily:'sans-serif', boxShadow:'0 6px 18px rgba(0,0,0,0.4)'
-        });
-        document.body.appendChild(tmp);
-        setTimeout(()=> tmp.remove(), 2600);
     }
 
     function unlockAchievement(key) {
         const a = achievementList[key];
         if (!a || a.unlocked) return;
         a.unlocked = true;
-        // Pasamos la clave (ej: "ach_start") para que se traduzca al mostrarse
         showAchievementToast(a.keyName);
     }
 
@@ -402,9 +368,4 @@ document.addEventListener('DOMContentLoaded', () => {
         if (pct >= achievementList['mitad'].threshold) unlockAchievement('mitad');
         if (pct >= achievementList['final'].threshold) unlockAchievement('final');
     }
-    
-    // Desbloqueo inicial
-    unlockAchievement('inicio');
-
-    console.info('[script.js] cargado. Iniciando detección de frames + i18n...');
 });
