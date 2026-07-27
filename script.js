@@ -195,28 +195,18 @@ document.addEventListener('DOMContentLoaded', () => {
         applyFilter(defaultActiveBtn.dataset.filter);
     }
 
+/* ---------------------------------------------------- */
+    /* BACKGROUND FRAME ANIMATION (CON CANVAS)              */
     /* ---------------------------------------------------- */
-    /* BACKGROUND FRAME ANIMATION (Intacto)                 */
-    /* ---------------------------------------------------- */
-    const animatedBackgroundDiv = safeGet('animated-background');
-    const useImgElement = true;
-    let bgImg = null;
-    
-    if (animatedBackgroundDiv && useImgElement) {
-        bgImg = animatedBackgroundDiv.querySelector('#bg-img');
-        if (!bgImg) {
-            bgImg = document.createElement('img');
-            bgImg.id = 'bg-img';
-            bgImg.alt = '';
-            bgImg.draggable = false;
-            bgImg.style.width = '100vw';
-            bgImg.style.height = '100vh';
-            bgImg.style.objectFit = 'cover';
-            bgImg.style.display = 'block';
-            bgImg.style.pointerEvents = 'none';
-            bgImg.style.userSelect = 'none';
-            animatedBackgroundDiv.appendChild(bgImg);
-        }
+    const canvas = safeGet('bg-canvas');
+    const loadingScreen = safeGet('loading-screen');
+    const loadingPct = safeGet('loading-pct');
+    const ctx = canvas ? canvas.getContext('2d') : null;
+
+    if (canvas) {
+        // Configura la resolución interna del canvas al tamaño de tus imágenes
+        canvas.width = 1280;
+        canvas.height = 720;
     }
 
     const totalFrames = 671; 
@@ -224,16 +214,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const candidateExts = ['png','jpg','webp'];
     const candidatePads = [3,4]; 
 
-    function loadImagePromise(url, timeoutMs=5000) {
+    function loadImagePromise(url) {
         return new Promise((resolve, reject) => {
             const img = new Image();
-            let done = false;
-            const onSuccess = () => { if(done) return; done = true; img.onload = img.onerror = null; resolve(img); };
-            const onError = () => { if(done) return; done = true; img.onload = img.onerror = null; reject(new Error('load error')); };
-            img.onload = onSuccess;
-            img.onerror = onError;
+            img.onload = () => resolve(img);
+            img.onerror = () => reject(new Error('load error'));
             img.src = url;
-            if (timeoutMs) setTimeout(()=> { if(!done) { done = true; img.onload = img.onerror = null; reject(new Error('timeout')); } }, timeoutMs);
         });
     }
 
@@ -243,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (const pad of candidatePads) {
                     const url = `${prefix}${String(1).padStart(pad,'0')}.${ext}`;
                     try {
-                        await loadImagePromise(url, 3000);
+                        await loadImagePromise(url);
                         return { prefix, ext, pad };
                     } catch (err) { }
                 }
@@ -254,21 +240,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     (async function initBackground() {
         const pattern = await detectFramePattern();
-        if (!pattern) return;
+        if (!pattern) {
+            if (loadingScreen) loadingScreen.classList.add('hidden');
+            return;
+        }
 
         const { prefix, ext, pad } = pattern;
         const makeUrl = i => `${prefix}${String(i).padStart(pad,'0')}.${ext}`;
 
         const preloaded = new Map();
-        const maxParallel = 8;
+        let loadedCount = 0;
+        const maxParallel = 10; // Descargar 10 imágenes a la vez
 
-        function downloadFrame(idx, attempt = 0) {
-            return loadImagePromise(makeUrl(idx), 15000)
-                .then(img => { preloaded.set(idx, img); return { idx, ok: true }; })
-                .catch(err => {
-                    if (attempt < 1) return downloadFrame(idx, attempt + 1);
-                    return { idx, ok: false };
-                });
+        function updateProgress() {
+            loadedCount++;
+            if (loadingPct) {
+                const percent = Math.floor((loadedCount / totalFrames) * 100);
+                loadingPct.textContent = percent;
+            }
+            // Cuando cargue suficientes imágenes (por ejemplo, el 100%), ocultamos la pantalla de carga
+            if (loadedCount >= totalFrames) {
+                if (loadingScreen) loadingScreen.classList.add('hidden');
+            }
+        }
+
+        async function downloadFrame(idx) {
+            try {
+                const img = await loadImagePromise(makeUrl(idx));
+                preloaded.set(idx, img);
+                updateProgress();
+                // Dibujar el primer frame nada más cargarlo
+                if (idx === 1 && ctx) {
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                }
+            } catch (err) {
+                updateProgress(); // Contarlo aunque falle para no bloquear
+            }
         }
 
         async function preloadAllFrames() {
@@ -281,34 +288,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             await Promise.all(workers);
-            if (preloaded.has(1) && bgImg) bgImg.src = preloaded.get(1).src;
         }
 
-        preloadAllFrames().catch(e => console.error(e));
+        // Iniciar precarga sin bloquear el resto de la web
+        preloadAllFrames();
 
         let lastIndex = -1;
         function updateByPercent(pct) {
-            if (!animatedBackgroundDiv) return;
-            const clamped = clamp(pct,0,100);
-            let idx = Math.ceil((clamped/100)*(totalFrames-1))+1;
-            idx = clamp(idx,1,totalFrames);
+            if (!ctx) return;
+            const clamped = clamp(pct, 0, 100);
+            let idx = Math.ceil((clamped / 100) * (totalFrames - 1)) + 1;
+            idx = clamp(idx, 1, totalFrames);
+            
             if (idx === lastIndex) return;
             lastIndex = idx;
-            const url = makeUrl(idx);
 
-            if (bgImg) {
-                const curSrc = bgImg.src || '';
-                const pre = preloaded.get(idx);
-                if (pre && pre.src && !curSrc.endsWith(pre.src)) {
-                    bgImg.src = pre.src;
-                } else if (!curSrc.endsWith(url)) {
-                    bgImg.src = url;
-                }
+            const pre = preloaded.get(idx);
+            if (pre) {
+                // Borrar el canvas y dibujar la nueva imagen instantáneamente
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(pre, 0, 0, canvas.width, canvas.height);
             }
         }
         window.__updateAnimatedBackground = updateByPercent;
     })();
-
+	
     /* ------------- SCROLL PROGRESS + ACHIEVEMENTS ------------- */
     const xpBar = safeGet('xp-bar');
     function getScrollPercent() {
