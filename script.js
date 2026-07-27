@@ -202,8 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas ? canvas.getContext('2d') : null;
 
     if (canvas) {
-        canvas.width = 640;
-        canvas.height = 360;
+        canvas.width = 320;
+        canvas.height = 180;
     }
 
     const totalFrames = 671; 
