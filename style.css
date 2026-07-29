@@ -7,7 +7,7 @@
     --accent-color: #2563eb;
     --border-color: #e2e8f0;
     --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    --bg-overlay: rgba(248, 250, 252, 0.85); /* Para dejar ver el fondo animado levemente */
+    --bg-overlay: rgba(248, 250, 252, 0.85);
 }
 
 [data-theme="dark"] {
@@ -48,11 +48,10 @@ body {
     height: 100vh;
     object-fit: cover;
     z-index: -3;
-    opacity: 0; /* Oculto por defecto para no mostrar un cuadro en blanco */
-    transition: opacity 1.5s ease-in-out; /* Fundido suave de 1.5 segundos al cargar */
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
 }
 
-/* Esta clase se añadirá por JavaScript en cuanto la primera imagen esté lista */
 #bg-canvas.loaded {
     opacity: 1;
 }
@@ -187,10 +186,9 @@ body {
 .social-icon {
     width: 20px;
     height: 20px;
-    /* Ajusta el color del icono en base al tema mediante filtro si hace falta, pero los iconos de la web ya están procesados */
 }
 [data-theme="dark"] .social-icon {
-    filter: invert(1); /* Invierte iconos negros a blancos en modo oscuro */
+    filter: invert(1);
 }
 
 /* --- SECCIONES Y NAVEGACIÓN --- */
@@ -394,4 +392,40 @@ body {
 
 .achievement-toast.show {
     bottom: 30px;
+}
+
+/* --- ESTILOS DE ETIQUETAS Y SUBTÍTULOS DE PROYECTO --- */
+.project-badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+[data-theme="dark"] .project-badge {
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+}
+
+.project-badge.personal {
+    background: linear-gradient(135deg, #64748b, #475569);
+}
+
+.project-badge.unity-tool {
+    background: linear-gradient(135deg, #059669, #047857);
+}
+
+.project-tech-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.45;
+    margin-bottom: 16px;
+    flex-grow: 1;
 }

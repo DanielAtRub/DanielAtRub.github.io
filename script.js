@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* LOGICA TEMA OSCURO / CLARO                           */
     /* ---------------------------------------------------- */
     const themeToggleBtn = safeGet('theme-toggle');
-    let currentTheme = localStorage.getItem('site-theme') || 'dark'; // Oscuro por defecto
+    let currentTheme = localStorage.getItem('site-theme') || 'dark';
 
     function updateTheme(theme) {
         currentTheme = theme;
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    updateTheme(currentTheme); // Inicializar
+    updateTheme(currentTheme); 
 
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
@@ -45,19 +45,37 @@ document.addEventListener('DOMContentLoaded', () => {
             about_title: "About Me",
             about_p1: "I am a Computer Engineer with a strong passion for emerging technologies and continuous learning.",
             about_p2: "Currently, I work as CTO and Lead Programmer, driving strategic decision-making and fostering a healthy, productive team environment.",
-            about_p3: "My experience covers development with Unity, Photon, and Virtual Reality projects.",
+            about_p3: "My experience covers development with Unity, Photon, Mirror and Virtual Reality projects.",
             skills_title: "Skills & Technologies",
             skill_english: "English B2",
             portfolio_title: "Experience & Projects",
             btn_all: "All",
             btn_exp: "Experience",
             btn_proj: "Projects",
+            btn_tools: "Unity Tools",
             btn_edu: "Education",
             date_present: "Oct 2024 - Present",
             job_cto: "CTO & Lead Programmer",
             proj_vr_rev: "Virtual Revolution Project",
-            btn_details: "More details \u2192",
             proj_personal: "Personal Project",
+            badge_tool: "Unity Asset Store Tool",
+            tech_native_pico: "Developed natively for PICO 4 Ultra Enterprise.",
+            tech_ported_pico: "Originally developed for Quest 2; later ported and optimized for PICO 4 Ultra Enterprise.",
+            tech_quest2: "Original launch natively developed for Meta Quest 2.",
+            tech_mobile: "Mobile casual game developed with Unity & C#.",
+            tech_ue4: "Early exploration in 3D game mechanics & level design using UE4.",
+            date_inv_pro: "Latest release date: May 2026",
+            date_groove: "Latest release date: February 2026",
+            date_inv_lite: "Latest release date: February 2026",
+            date_sniper: "Latest release date: January 2026",
+            date_creature: "Latest release date: November 2025",
+            desc_inv_pro: "Advanced and modular inventory framework designed for professional Unity projects.",
+            desc_groove: "Comprehensive modular kit with custom shaders, meshes, and physics for slot car racing systems.",
+            desc_inv_lite: "Lightweight and highly performant inventory system architecture for fast Unity integration.",
+            desc_sniper: "Realistic ballistics, scope optics mechanics, and weapon system template for Unity.",
+            desc_creature: "Advanced IK and procedural animation solver system for multi-legged creatures in Unity.",
+            btn_assetstore: "View on Asset Store \u2192",
+            btn_details: "More details \u2192",
             btn_google: "View on Google Play \u2192",
             date_uni: "2020 - 2025",
             edu_uni: "University of Almería",
@@ -84,19 +102,37 @@ document.addEventListener('DOMContentLoaded', () => {
             about_title: "Sobre mí",
             about_p1: "Soy Ingeniero Informático, un apasionado de las nuevas tecnologías y del aprendizaje continuo.",
             about_p2: "Actualmente, me desempeño como CTO y Lead Programmer, liderando la toma de decisiones estratégicas y promoviendo un entorno de trabajo saludable y productivo.",
-            about_p3: "Mi experiencia abarca el desarrollo con Unity, Photon y proyectos en Realidad Virtual.",
+            about_p3: "Mi experiencia abarca el desarrollo con Unity, Photon, Mirror y proyectos en Realidad Virtual.",
             skills_title: "Habilidades y Tecnologías",
             skill_english: "Inglés B2",
             portfolio_title: "Experiencia y Proyectos",
             btn_all: "Todo",
             btn_exp: "Experiencia",
             btn_proj: "Proyectos",
+            btn_tools: "Herramientas Unity",
             btn_edu: "Formación",
             date_present: "Oct 2024 - Presente",
             job_cto: "CTO y Lead de Programación",
             proj_vr_rev: "Proyecto de Virtual Revolution",
-            btn_details: "Más detalles \u2192",
             proj_personal: "Proyecto Personal",
+            badge_tool: "Herramienta de Unity Asset Store",
+            tech_native_pico: "Desarrollado de forma nativa para PICO 4 Ultra Enterprise.",
+            tech_ported_pico: "Desarrollado originalmente para Quest 2; posteriormente portado y optimizado para PICO 4 Ultra Enterprise.",
+            tech_quest2: "Lanzamiento original desarrollado nativamente para Meta Quest 2.",
+            tech_mobile: "Juego casual para móvil desarrollado en Unity y C#.",
+            tech_ue4: "Exploración temprana de mecánicas 3D y diseño de niveles usando UE4.",
+            date_inv_pro: "Última actualización: Mayo 2026",
+            date_groove: "Última actualización: Febrero 2026",
+            date_inv_lite: "Última actualización: Febrero 2026",
+            date_sniper: "Última actualización: Enero 2026",
+            date_creature: "Última actualización: Noviembre 2025",
+            desc_inv_pro: "Sistema de inventario modular avanzado diseñado para proyectos profesionales en Unity.",
+            desc_groove: "Kit modular completo con shaders personalizados, mallas y físicas para circuitos de slot cars.",
+            desc_inv_lite: "Arquitectura de inventario ligera y de alto rendimiento para una rápida integración en Unity.",
+            desc_sniper: "Balística realista, mecánicas de ópticas de mira y plantilla de sistema de armas para Unity.",
+            desc_creature: "Sistema avanzado de resolución IK y animación procedimental para criaturas multípedo en Unity.",
+            btn_assetstore: "Ver en Asset Store \u2192",
+            btn_details: "Más detalles \u2192",
             btn_google: "Ver en Google Play \u2192",
             date_uni: "2020 - 2025",
             edu_uni: "Universidad de Almería",
@@ -169,18 +205,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-/* --------------- FILTER PORTFOLIO -------------- */
+    /* --------------- FILTER PORTFOLIO -------------- */
     const filterButtons = document.querySelectorAll('.filter-buttons button');
     const portfolioCards = document.querySelectorAll('#portfolio-grid .card');
 
-    // Función para aplicar el filtro visualmente
     function applyFilter(filter) {
         portfolioCards.forEach(card => {
             card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'flex' : 'none';
         });
     }
 
-    // Eventos de click para los botones
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             filterButtons.forEach(b => b.classList.remove('active'));
@@ -189,13 +223,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Ejecutar el filtro activo por defecto al cargar la página
     const defaultActiveBtn = document.querySelector('.filter-btn.active');
     if (defaultActiveBtn) {
         applyFilter(defaultActiveBtn.dataset.filter);
     }
 
-	/* ---------------------------------------------------- */
+    /* ---------------------------------------------------- */
     /* BACKGROUND FRAME ANIMATION (CON CANVAS SILENCIOSO)   */
     /* ---------------------------------------------------- */
     const canvas = safeGet('bg-canvas');
@@ -251,7 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const img = await loadImagePromise(makeUrl(idx));
                 preloaded.set(idx, img);
                 
-                // Si es el primer frame, lo dibujamos y mostramos el canvas con fundido
                 if (idx === 1 && ctx) {
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                     if (!firstFrameDrawn) {
@@ -260,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             } catch (err) { 
-                // Fallos silenciados en consola para una experiencia limpia
+                // Silenciado intencionalmente
             }
         }
 
@@ -276,7 +308,6 @@ document.addEventListener('DOMContentLoaded', () => {
             await Promise.all(workers);
         }
 
-        // Iniciar precarga sin bloquear la página
         preloadAllFrames();
 
         let lastIndex = -1;
@@ -297,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         window.__updateAnimatedBackground = updateByPercent;
     })();
-	
+    
     /* ------------- SCROLL PROGRESS + ACHIEVEMENTS ------------- */
     const xpBar = safeGet('xp-bar');
     function getScrollPercent() {
