@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel Atienza | Software Developer</title>
-	<link rel="icon" type="image/png" href="Icon.png">
+    <title>Daniel Atienza | Unity & VR Developer</title>
+    <meta name="description" content="Daniel Atienza — Unity & VR Developer specialized in C#, multiplayer systems, gameplay programming, optimization and immersive experiences.">
+    <meta name="keywords" content="Unity Developer, VR Developer, C#, Unity 3D, PICO 4, Meta Quest, Multiplayer, Photon, Gameplay Programmer">
+    <link rel="icon" type="image/png" href="Icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Fuente moderna e inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- CANVAS PARA EL FONDO ANIMADO -->
+    <!-- BACKGROUND -->
     <canvas id="bg-canvas"></canvas>
     <div class="bg-overlay"></div>
-    
-    <!-- Navbar superior -->
+
+    <!-- TOP NAV -->
     <nav class="top-nav">
         <div class="nav-container">
             <div class="brand">
@@ -27,90 +28,114 @@
                 <button id="lang-toggle" class="control-btn">ES</button>
             </div>
         </div>
-        <!-- Barra de progreso de lectura -->
         <div class="progress-container">
             <div id="xp-bar" class="progress-bar"></div>
         </div>
     </nav>
 
+    <!-- MAIN CONTAINER -->
     <div class="container">
+        <!-- HERO -->
         <header class="hero-header">
-            <h1 id="main-title"></h1> 
-            <p class="subtitle" data-i18n="role">Software Developer | VR/AR Enthusiast</p>
+            <h1 id="main-title"></h1>
+            <p class="subtitle" data-i18n="role">Unity & VR Developer | C# Programmer</p>
+            <p class="hero-description" data-i18n="hero_description">
+                I build immersive VR experiences, gameplay systems and technical tools with Unity and C#.
+            </p>
+
+            <!-- SOCIAL -->
             <div class="social-links">
-              <a href="https://www.linkedin.com/in/daniel-atirub/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                <img src="https://img.icons8.com/ios-filled/50/currentColor/linkedin.png" alt="LinkedIn" class="social-icon"/>
-              </a>
-              <a href="https://assetstore.unity.com/publishers/127496" target="_blank" rel="noopener noreferrer" title="Unity Asset Store">
-                <img src="https://img.icons8.com/ios-filled/50/currentColor/unity.png" alt="Unity Asset Store" class="social-icon"/>
-              </a>
-              <a href="https://play.google.com/store/apps/dev?id=5790081229006091132" target="_blank" rel="noopener noreferrer" title="Google Play Store">
-                <img src="https://img.icons8.com/color/48/000000/google-play.png" alt="Google Play Store"/>
-              </a>
-              <a href="https://www.instagram.com/aligathor_production/" target="_blank" rel="noopener noreferrer" title="Instagram">
-                <img src="https://img.icons8.com/ios-filled/50/currentColor/instagram-new.png" alt="Instagram" class="social-icon"/>
-              </a>
+                <a href="https://www.linkedin.com/in/daniel-atirub/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <img src="https://img.icons8.com/ios-filled/50/currentColor/linkedin.png" alt="LinkedIn" class="social-icon">
+                </a>
+                <a href="https://assetstore.unity.com/publishers/127496" target="_blank" rel="noopener noreferrer" title="Unity Asset Store">
+                    <img src="https://img.icons8.com/ios-filled/50/currentColor/unity.png" alt="Unity Asset Store" class="social-icon">
+                </a>
+				<a href="https://play.google.com/store/apps/dev?id=5790081229006091132" target="_blank" rel="noopener noreferrer" title="Google Play">
+					<img src="https://img.icons8.com/color/48/000000/google-play.png" alt="Google Play" class="social-icon" style="filter: none;">
+				</a>
+                <a href="https://www.instagram.com/aligathor_production/" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <img src="https://img.icons8.com/ios-filled/50/currentColor/instagram-new.png" alt="Instagram" class="social-icon">
+                </a>
+            </div>
+
+            <!-- AVAILABILITY -->
+            <div class="availability-badge">
+                <span class="pulse-dot"></span>
+                <span data-i18n="available_text">Available for new opportunities</span>
             </div>
         </header>
 
         <main>
+            <!-- SECTION NAV -->
             <nav class="section-nav">
                 <ul>
                     <li><a href="#sobre-mi" class="nav-link" data-i18n="quest_1">About Me</a></li>
                     <li><a href="#habilidades" class="nav-link" data-i18n="quest_2">Skills</a></li>
-                    <li><a href="#portfolio" class="nav-link" data-i18n="quest_3">Portfolio</a></li>
+                    <li><a href="#portfolio" class="nav-link" data-i18n="quest_3">Experience & Projects</a></li>
                 </ul>
             </nav>
 
+            <!-- ABOUT -->
             <section id="sobre-mi" class="content-section">
                 <h2 data-i18n="about_title">About Me</h2>
                 <div class="section-body">
-                    <p data-i18n="about_p1">I am a Computer Engineer with a strong passion for emerging technologies and continuous learning.</p>
-                    <p data-i18n="about_p2">Currently, I work as CTO and Lead Programmer, driving strategic decision-making and fostering a healthy, productive team environment.</p>
-                    <p data-i18n="about_p3">My experience covers development with Unity, Photon, Mirror and Virtual Reality projects.</p>
+                    <p data-i18n="about_p1">I am a Computer Engineer and Unity Developer specialized in VR, gameplay programming and interactive experiences.</p>
+                    <p data-i18n="about_p2">Over the last years, I have worked on commercial VR projects for Meta Quest and PICO platforms, contributing to gameplay systems, multiplayer features, optimization and technical architecture.</p>
+                    <p data-i18n="about_p3">I have also taken technical leadership responsibilities, including architecture decisions and team coordination, while remaining closely involved in development.</p>
                 </div>
             </section>
 
-<section id="habilidades" class="content-section">
-                <h2 data-i18n="skills_title">Skills & Expertise</h2>
+            <!-- SKILLS -->
+            <section id="habilidades" class="content-section">
+                <h2 data-i18n="skills_title">Skills & Technologies</h2>
                 
+                <!-- CORE -->
                 <div class="skills-category">
                     <h3 data-i18n="cat_core">Core Technologies</h3>
                     <div class="skills-container">
-                        <span class="skill-tag">Unity 3D</span>
-                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag primary">Unity 3D</span>
+                        <span class="skill-tag primary">C#</span>
                         <span class="skill-tag">Unreal Engine</span>
                         <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Android Dev</span>
-                        <span class="skill-tag" data-i18n="skill_english">English (B2)</span>
+                        <span class="skill-tag">Android</span>
+                        <span class="skill-tag" data-i18n="skill_english">English B2</span>
                     </div>
                 </div>
 
+                <!-- ARCHITECTURE -->
                 <div class="skills-category">
-                    <h3 data-i18n="cat_architecture">Software Architecture & Tools</h3>
+                    <h3 data-i18n="cat_architecture">Software Architecture & Engineering</h3>
                     <div class="skills-container">
                         <span class="skill-tag">Software Architecture</span>
+                        <span class="skill-tag">Multiplayer Networking</span>
                         <span class="skill-tag">Procedural Content Generation</span>
-                        <span class="skill-tag">Object Pooling & Optimization</span>
+                        <span class="skill-tag">Object Pooling</span>
+                        <span class="skill-tag">Performance Optimization</span>
                         <span class="skill-tag">Tool Development</span>
                         <span class="skill-tag">Blender API</span>
-                        <span class="skill-tag">Inverse Kinematics (IK)</span>
+                        <span class="skill-tag">Inverse Kinematics</span>
                     </div>
                 </div>
 
+                <!-- VR -->
                 <div class="skills-category">
                     <h3 data-i18n="cat_vr">VR & Gameplay</h3>
                     <div class="skills-container">
-                        <span class="skill-tag">VR/AR Development</span>
-                        <span class="skill-tag">Physics Simulation</span>
-                        <span class="skill-tag">Multiplayer (Photon / Mirror)</span>
+                        <span class="skill-tag primary">VR / XR Development</span>
+                        <span class="skill-tag">Meta Quest</span>
+                        <span class="skill-tag">PICO 4</span>
+                        <span class="skill-tag">Photon Fusion</span>
+                        <span class="skill-tag">Mirror</span>
                         <span class="skill-tag">Gameplay Programming</span>
+                        <span class="skill-tag">Physics</span>
                         <span class="skill-tag">Game Design</span>
-                        <span class="skill-tag">UI/UX Design</span>
+                        <span class="skill-tag">UI / UX</span>
                     </div>
                 </div>
             </section>
 
+            <!-- PORTFOLIO -->
             <section id="portfolio" class="content-section">
                 <h2 data-i18n="portfolio_title">Experience & Projects</h2>
                 <div class="filter-buttons">
@@ -120,20 +145,23 @@
                     <button class="filter-btn" data-filter="asset-tool" data-i18n="btn_tools">Unity Tools</button>
                     <button class="filter-btn" data-filter="education" data-i18n="btn_edu">Education</button>
                 </div>
-                
+
                 <div id="portfolio-grid">
-                    <div class="card" data-category="experience">
-					<div class="image-container">
-                        <img src="VRevolution.png" alt="Escape Temple" loading="lazy">
-                    </div>
+                    <!-- EXPERIENCE -->
+                    <div class="card featured-card" data-category="experience">
+                        <div class="image-container">
+                            <img src="VRevolution.png" alt="Virtual Revolution" loading="lazy">
+                        </div>
                         <div class="card-content">
-                            <span class="card-date" data-i18n="date_present">Oct 2024 - Present</span>
+                            <span class="card-date" data-i18n="date_present">Oct 2024 - Sep 2026</span>
                             <h3>Virtual Revolution</h3>
-                            <p class="card-subtitle" data-i18n="job_cto">CTO & Lead Programmer</p>
+                            <p class="card-subtitle" data-i18n="job_cto">Lead VR Programmer</p>
+                            <p class="card-description" data-i18n="job_vr_description">Unity development for commercial VR experiences, including gameplay, multiplayer systems, optimization and technical architecture.</p>
                         </div>
                     </div>
-					
-					<div class="card" data-category="personal-project">
+
+                    <!-- ESCAPE TEMPLE -->
+                    <div class="card" data-category="personal-project">
                         <div class="image-container">
                             <img src="EscapeTemple.png" alt="Escape Temple" loading="lazy">
                         </div>
@@ -142,74 +170,80 @@
                             <span class="project-badge" data-i18n="proj_vr_rev">Virtual Revolution Project</span>
                             <h3>Escape Temple</h3>
                             <p class="project-tech-subtitle" data-i18n="tech_native_pico">Developed natively for PICO 4 Ultra Enterprise.</p>
-                            <a href="https://vrvirtualrevolution.com/escapetemple" target="_blank" class="card-link" data-i18n="btn_details">More details &rarr;</a>
+                            <a href="https://vrvirtualrevolution.com/escapetemple" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_details">More details →</a>
                         </div>
-                    </div>  
-                    
+                    </div>
+
+                    <!-- INVENTORY PRO -->
                     <div class="card" data-category="asset-tool">
                         <div class="card-content">
-                            <span class="card-date" data-i18n="date_inv_pro">Latest release date: May 2026</span>
+                            <span class="card-date" data-i18n="date_inv_pro">Latest update: May 2026</span>
                             <span class="project-badge unity-tool" data-i18n="badge_tool">Unity Asset Store Tool</span>
                             <h3>Inventory Pro</h3>
-                            <p class="project-tech-subtitle" data-i18n="desc_inv_pro">Advanced and modular inventory framework designed for professional Unity projects.</p>
-                            <a href="https://assetstore.unity.com/packages/templates/systems/inventory-pro-377850" target="_blank" class="card-link" data-i18n="btn_assetstore">View on Asset Store &rarr;</a>
+                            <p class="project-tech-subtitle" data-i18n="desc_inv_pro">Advanced modular inventory framework designed for professional Unity projects.</p>
+                            <a href="https://assetstore.unity.com/packages/templates/systems/inventory-pro-377850" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_assetstore">View on Asset Store →</a>
                         </div>
                     </div>
 
+                    <!-- GROOVE -->
                     <div class="card" data-category="asset-tool">
                         <div class="card-content">
-                            <span class="card-date" data-i18n="date_groove">Latest release date: February 2026</span>
+                            <span class="card-date" data-i18n="date_groove">Latest update: February 2026</span>
                             <span class="project-badge unity-tool" data-i18n="badge_tool">Unity Asset Store Tool</span>
                             <h3>Groove Racing - Ultimate Modular Slot Car Kit</h3>
-                            <p class="project-tech-subtitle" data-i18n="desc_groove">Comprehensive modular kit with custom shaders, meshes, and physics for slot car racing systems.</p>
-                            <a href="https://assetstore.unity.com/packages/3d/environments/roadways/groove-racing-ultimate-modular-slot-car-kit-362602" target="_blank" class="card-link" data-i18n="btn_assetstore">View on Asset Store &rarr;</a>
+                            <p class="project-tech-subtitle" data-i18n="desc_groove">Modular racing kit featuring custom shaders, meshes and physics systems.</p>
+                            <a href="https://assetstore.unity.com/packages/3d/environments/roadways/groove-racing-ultimate-modular-slot-car-kit-362602" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_assetstore">View on Asset Store →</a>
                         </div>
                     </div>
 
+                    <!-- INVENTORY LITE -->
                     <div class="card" data-category="asset-tool">
                         <div class="card-content">
-                            <span class="card-date" data-i18n="date_inv_lite">Latest release date: February 2026</span>
+                            <span class="card-date" data-i18n="date_inv_lite">Latest update: February 2026</span>
                             <span class="project-badge unity-tool" data-i18n="badge_tool">Unity Asset Store Tool</span>
                             <h3>Inventory Lite</h3>
-                            <p class="project-tech-subtitle" data-i18n="desc_inv_lite">Lightweight and highly performant inventory system architecture for fast Unity integration.</p>
-                            <a href="https://assetstore.unity.com/packages/templates/systems/inventory-lite-362352" target="_blank" class="card-link" data-i18n="btn_assetstore">View on Asset Store &rarr;</a>
+                            <p class="project-tech-subtitle" data-i18n="desc_inv_lite">Lightweight and performance-oriented inventory system for Unity.</p>
+                            <a href="https://assetstore.unity.com/packages/templates/systems/inventory-lite-362352" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_assetstore">View on Asset Store →</a>
                         </div>
                     </div>
 
+                    <!-- SNIPER -->
                     <div class="card" data-category="asset-tool">
                         <div class="card-content">
-                            <span class="card-date" data-i18n="date_sniper">Latest release date: January 2026</span>
+                            <span class="card-date" data-i18n="date_sniper">Latest update: January 2026</span>
                             <span class="project-badge unity-tool" data-i18n="badge_tool">Unity Asset Store Tool</span>
                             <h3>Sniper System - Realistic</h3>
-                            <p class="project-tech-subtitle" data-i18n="desc_sniper">Realistic ballistics, scope optics mechanics, and weapon system template for Unity.</p>
-                            <a href="https://assetstore.unity.com/packages/templates/systems/sniper-system-realistic-353074" target="_blank" class="card-link" data-i18n="btn_assetstore">View on Asset Store &rarr;</a>
+                            <p class="project-tech-subtitle" data-i18n="desc_sniper">Realistic ballistics, scope mechanics and modular weapon-system architecture.</p>
+                            <a href="https://assetstore.unity.com/packages/templates/systems/sniper-system-realistic-353074" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_assetstore">View on Asset Store →</a>
                         </div>
                     </div>
 
+                    <!-- CREATURE LEG -->
                     <div class="card" data-category="asset-tool">
                         <div class="card-content">
-                            <span class="card-date" data-i18n="date_creature">Latest release date: November 2025</span>
+                            <span class="card-date" data-i18n="date_creature">Latest update: November 2025</span>
                             <span class="project-badge unity-tool" data-i18n="badge_tool">Unity Asset Store Tool</span>
                             <h3>Procedural Creature Leg System</h3>
-                            <p class="project-tech-subtitle" data-i18n="desc_creature">Advanced IK and procedural animation solver system for multi-legged creatures in Unity.</p>
-                            <a href="https://assetstore.unity.com/packages/tools/animation/procedural-creature-leg-system-343316" target="_blank" class="card-link" data-i18n="btn_assetstore">View on Asset Store &rarr;</a>
+                            <p class="project-tech-subtitle" data-i18n="desc_creature">Procedural IK and animation system for multi-legged creatures.</p>
+                            <a href="https://assetstore.unity.com/packages/tools/animation/procedural-creature-leg-system-343316" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_assetstore">View on Asset Store →</a>
                         </div>
                     </div>
-                    
-					<!-- PORTS PARA PICO 4 ULTRA ENTERPRISE -->
+
+                    <!-- FAR WEST -->
                     <div class="card" data-category="personal-project">
                         <div class="image-container">
-                            <img src="FarWest.png" alt="Far West" loading="lazy">
+                            <img src="FarWest.png" alt="Far West Express" loading="lazy">
                         </div>
                         <div class="card-content">
                             <span class="card-date">2026</span>
                             <span class="project-badge" data-i18n="proj_vr_rev">Virtual Revolution Project</span>
-                            <h3>Far West Express (Pico 4 Edition)</h3>
-                            <p class="project-tech-subtitle" data-i18n="tech_ported_pico">Originally developed for Quest 2; later ported and optimized for PICO 4 Ultra Enterprise.</p>
-                            <a href="https://vrvirtualrevolution.com/far-west-express" target="_blank" class="card-link" data-i18n="btn_details">More details &rarr;</a>
+                            <h3>Far West Express</h3>
+                            <p class="project-tech-subtitle" data-i18n="tech_ported_pico">Originally developed for Quest 2 and later ported and optimized for PICO 4 Ultra Enterprise.</p>
+                            <a href="https://vrvirtualrevolution.com/far-west-express" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_details">More details →</a>
                         </div>
-                    </div>  
-                    
+                    </div>
+
+                    <!-- SPACE ELITE -->
                     <div class="card" data-category="personal-project">
                         <div class="image-container">
                             <img src="SquadElite.png" alt="Space Elite Squad" loading="lazy">
@@ -217,12 +251,13 @@
                         <div class="card-content">
                             <span class="card-date">2026</span>
                             <span class="project-badge" data-i18n="proj_vr_rev">Virtual Revolution Project</span>
-                            <h3>Space Elite Squad (Pico 4 Edition)</h3>
-                            <p class="project-tech-subtitle" data-i18n="tech_ported_pico">Originally developed for Quest 2; later ported and optimized for PICO 4 Ultra Enterprise.</p>
-                            <a href="https://vrvirtualrevolution.com/space-elite-squad" target="_blank" class="card-link" data-i18n="btn_details">More details &rarr;</a>
+                            <h3>Space Elite Squad</h3>
+                            <p class="project-tech-subtitle" data-i18n="tech_ported_pico">Originally developed for Quest 2 and later ported and optimized for PICO 4 Ultra Enterprise.</p>
+                            <a href="https://vrvirtualrevolution.com/space-elite-squad" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_details">More details →</a>
                         </div>
-                    </div>  
-					
+                    </div>
+
+                    <!-- GALAXTRON PICO -->
                     <div class="card" data-category="personal-project">
                         <div class="image-container">
                             <img src="galaxtron.png" alt="Galaxtron PICO" loading="lazy">
@@ -230,25 +265,27 @@
                         <div class="card-content">
                             <span class="card-date">2026</span>
                             <span class="project-badge" data-i18n="proj_vr_rev">Virtual Revolution Project</span>
-                            <h3>Galaxtron (Pico 4 Edition)</h3>
-                            <p class="project-tech-subtitle" data-i18n="tech_ported_pico">Originally developed for Quest 2; later ported and optimized for PICO 4 Ultra Enterprise.</p>
-                            <a href="https://vrvirtualrevolution.com/galaxtron" target="_blank" class="card-link" data-i18n="btn_details">More details &rarr;</a>
+                            <h3>Galaxtron</h3>
+                            <p class="project-tech-subtitle" data-i18n="tech_ported_pico">Originally developed for Quest 2 and later ported and optimized for PICO 4 Ultra Enterprise.</p>
+                            <a href="https://vrvirtualrevolution.com/galaxtron" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_details">More details →</a>
                         </div>
                     </div>
-                    
+
+                    <!-- STRIKE FORCE -->
                     <div class="card" data-category="personal-project">
                         <div class="image-container">
-                            <img src="strikeforce.png" alt="Strike Force PICO" loading="lazy">
+                            <img src="strikeforce.png" alt="Strike Force" loading="lazy">
                         </div>
                         <div class="card-content">
                             <span class="card-date">2026</span>
                             <span class="project-badge" data-i18n="proj_vr_rev">Virtual Revolution Project</span>
-                            <h3>Strike Force (Pico 4 Edition)</h3>
-                            <p class="project-tech-subtitle" data-i18n="tech_ported_pico">Originally developed for Quest 2; later ported and optimized for PICO 4 Ultra Enterprise.</p>
-                            <a href="https://vrvirtualrevolution.com/strike-force" target="_blank" class="card-link" data-i18n="btn_details">More details &rarr;</a>
+                            <h3>Strike Force</h3>
+                            <p class="project-tech-subtitle" data-i18n="tech_ported_pico">Originally developed for Quest 2 and later ported and optimized for PICO 4 Ultra Enterprise.</p>
+                            <a href="https://vrvirtualrevolution.com/strike-force" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_details">More details →</a>
                         </div>
-                    </div> 
+                    </div>
 
+                    <!-- SURVIVAL WAR Z -->
                     <div class="card" data-category="personal-project">
                         <div class="image-container">
                             <img src="WarZ.png" alt="Survival War Z" loading="lazy">
@@ -256,12 +293,13 @@
                         <div class="card-content">
                             <span class="card-date">2026</span>
                             <span class="project-badge" data-i18n="proj_vr_rev">Virtual Revolution Project</span>
-                            <h3>Survival War Z (Pico 4 Edition)</h3>
-                            <p class="project-tech-subtitle" data-i18n="tech_ported_pico">Originally developed for Quest 2; later ported and optimized for PICO 4 Ultra Enterprise.</p>
-                            <a href="https://vrvirtualrevolution.com/survival-war-z" target="_blank" class="card-link" data-i18n="btn_details">More details &rarr;</a>
+                            <h3>Survival War Z</h3>
+                            <p class="project-tech-subtitle" data-i18n="tech_ported_pico">Originally developed for Quest 2 and later ported and optimized for PICO 4 Ultra Enterprise.</p>
+                            <a href="https://vrvirtualrevolution.com/survival-war-z" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_details">More details →</a>
                         </div>
                     </div>
-                    
+
+                    <!-- CANDY WORLD -->
                     <div class="card" data-category="personal-project">
                         <div class="image-container">
                             <img src="candy.png" alt="Candy World" loading="lazy">
@@ -269,42 +307,15 @@
                         <div class="card-content">
                             <span class="card-date">2026</span>
                             <span class="project-badge" data-i18n="proj_vr_rev">Virtual Revolution Project</span>
-                            <h3>Candy World (Pico 4 Edition)</h3>
-                            <p class="project-tech-subtitle" data-i18n="tech_ported_pico">Originally developed for Quest 2; later ported and optimized for PICO 4 Ultra Enterprise.</p>
-                            <a href="https://vrvirtualrevolution.com/candy-world" target="_blank" class="card-link" data-i18n="btn_details">More details &rarr;</a>
+                            <h3>Candy World</h3>
+                            <p class="project-tech-subtitle" data-i18n="tech_ported_pico">Originally developed for Quest 2 and later ported and optimized for PICO 4 Ultra Enterprise.</p>
+                            <a href="https://vrvirtualrevolution.com/candy-world" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_details">More details →</a>
                         </div>
-                    </div>                 
+                    </div>
 
-                    <!-- LANZAMIENTOS ORIGINALES PARA QUEST 2 (2025) -->
+                    <!-- CLICKER HOLE 2 -->
                     <div class="card" data-category="personal-project">
                         <div class="image-container">
-                            <img src="galaxtron.png" alt="Galaxtron" loading="lazy">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-date">2025</span>
-                            <span class="project-badge" data-i18n="proj_vr_rev">Virtual Revolution Project</span>
-                            <h3>Galaxtron</h3>
-                            <p class="project-tech-subtitle" data-i18n="tech_quest2">Original launch natively developed for Meta Quest 2.</p>
-                            <a href="https://vrvirtualrevolution.com/galaxtron" target="_blank" class="card-link" data-i18n="btn_details">More details &rarr;</a>
-                        </div>
-                    </div>
-                    
-                    <div class="card" data-category="personal-project">
-                        <div class="image-container">
-                            <img src="strikeforce.png" alt="Strike Force" loading="lazy">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-date">2025</span>
-                            <span class="project-badge" data-i18n="proj_vr_rev">Virtual Revolution Project</span>
-                            <h3>Strike Force</h3>
-                            <p class="project-tech-subtitle" data-i18n="tech_quest2">Original launch natively developed for Meta Quest 2.</p>
-                            <a href="https://vrvirtualrevolution.com/strike-force" target="_blank" class="card-link" data-i18n="btn_details">More details &rarr;</a>
-                        </div>
-                    </div>
-                      
-                    <!-- PROYECTOS PERSONALES Y EDUCACIÓN -->
-                    <div class="card" data-category="personal-project">
-					    <div class="image-container">
                             <img src="ClickerHole2.png" alt="Clicker Hole 2" loading="lazy">
                         </div>
                         <div class="card-content">
@@ -312,31 +323,34 @@
                             <span class="project-badge personal" data-i18n="proj_personal">Personal Project</span>
                             <h3>Clicker Hole 2</h3>
                             <p class="project-tech-subtitle" data-i18n="tech_mobile">Mobile casual game developed with Unity & C#.</p>
-                            <a href="https://play.google.com/store/apps/details?id=com.AligathorProductions.ClickerHole2" target="_blank" class="card-link" data-i18n="btn_google">View on Google Play &rarr;</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.AligathorProductions.ClickerHole2" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_google">View on Google Play →</a>
                         </div>
                     </div>
 
+                    <!-- CLICKER HOLE -->
                     <div class="card" data-category="personal-project">
-					    <div class="image-container">
-                            <img src="ClickerHole1.png" alt="Clicker Hole 1" loading="lazy">
+                        <div class="image-container">
+                            <img src="ClickerHole1.png" alt="Clicker Hole" loading="lazy">
                         </div>
                         <div class="card-content">
                             <span class="card-date">2020</span>
                             <span class="project-badge personal" data-i18n="proj_personal">Personal Project</span>
                             <h3>Clicker Hole</h3>
                             <p class="project-tech-subtitle" data-i18n="tech_mobile">Mobile casual game developed with Unity & C#.</p>
-                            <a href="https://play.google.com/store/apps/details?id=com.AligathorCompany.ClickerHole" target="_blank" class="card-link" data-i18n="btn_google">View on Google Play &rarr;</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.AligathorCompany.ClickerHole" target="_blank" rel="noopener noreferrer" class="card-link" data-i18n="btn_google">View on Google Play →</a>
                         </div>
                     </div>
 
+                    <!-- EDUCATION -->
                     <div class="card" data-category="education">
                         <div class="card-content">
-                            <span class="card-date" data-i18n="date_uni">2020 - 2025</span>
+                            <span class="card-date" data-i18n="date_uni">2020 - 2026</span>
                             <h3 data-i18n="edu_uni">University of Almería</h3>
                             <p class="card-subtitle" data-i18n="edu_degree">Computer Engineering Degree</p>
                         </div>
                     </div>
 
+                    <!-- OLD EXPERIENCE -->
                     <div class="card" data-category="experience">
                         <div class="card-content">
                             <span class="card-date" data-i18n="date_verajoker">Apr 2019 - Sep 2019</span>
@@ -350,16 +364,6 @@
                             <span class="card-date" data-i18n="date_esistemas">Mar 2018 - Jun 2018</span>
                             <h3>e-sistemas.net</h3>
                             <p class="card-subtitle" data-i18n="job_tech">IT Technician</p>
-                        </div>
-                    </div>
-
-                    <div class="card" data-category="personal-project">
-                        <div class="card-content">
-                            <span class="card-date">2017</span>
-                            <span class="project-badge personal" data-i18n="proj_personal">Personal Project</span>
-                            <h3>Unreal Engine Project</h3>
-                            <p class="project-tech-subtitle" data-i18n="tech_ue4">Early exploration in 3D game mechanics & level design using UE4.</p>
-                            <a href="https://www.youtube.com/watch?v=nOeOQ-v_cfg" target="_blank" class="card-link" data-i18n="btn_youtube">Watch on YouTube &rarr;</a>
                         </div>
                     </div>
 
@@ -389,12 +393,12 @@
                 </div>
             </section>
         </main>
-        
+
         <footer class="site-footer">
             <p>© 2026 Daniel Atienza Rubi.</p>
         </footer>
     </div>
-    
+
     <div id="achievement-toast" class="achievement-toast"></div>
     <script src="script.js"></script>
 </body>
