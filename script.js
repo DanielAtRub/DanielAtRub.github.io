@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             /* SPIN FOR YOUR LIFE */
             tech_spin: "Dark roguelite roulette game developed with Unity & C#, combining strategy, survival and horror mechanics.",
             btn_itch: "Demo on itch.io →",
+			btn_google_demo: "Demo on Google Play →",
 
             /* UNITY ASSET STORE */
             date_inv_pro: "Latest update: May 2026",
@@ -167,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             /* SPIN FOR YOUR LIFE */
             tech_spin: "Juego de ruleta roguelite de terror desarrollado con Unity y C#, combinando estrategia, supervivencia y mecánicas de riesgo.",
             btn_itch: "Demo en itch.io →",
+			btn_google_demo: "Demo en Google Play →",
 
             /* UNITY ASSET STORE */
             date_inv_pro: "Última actualización: Mayo 2026",

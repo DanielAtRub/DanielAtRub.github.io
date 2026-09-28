@@ -210,6 +210,12 @@ body {
 .card h3 { font-size: 1.05rem; line-height: 1.35; margin-bottom: 8px; }
 .card-subtitle { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px; font-weight: 600; }
 .card-description { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 16px; flex-grow: 1; }
+.card-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+}
 .project-tech-subtitle { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px; flex-grow: 1; }
 
 /* ------------------------------------------------ */
