@@ -119,7 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ach_start: "Welcome to my portfolio",
             ach_mid: "Reviewing experience...",
             ach_end: "Thanks for reading!",
-            ach_unlocked: ""
+            ach_unlocked: "",
+			tech_original_quest2: "Originally developed for Meta Quest 2.",
+			tech_ported_pico: "Originally developed for Meta Quest 2 and later ported and optimized for PICO 4 Ultra Enterprise."
         },
 
         es: {
@@ -205,7 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ach_start: "Bienvenido a mi portafolio",
             ach_mid: "Revisando experiencia...",
             ach_end: "¡Gracias por leer!",
-            ach_unlocked: ""
+            ach_unlocked: "",
+			tech_original_quest2: "Desarrollado originalmente para Meta Quest 2.",
+			tech_ported_pico: "Desarrollado originalmente para Meta Quest 2 y posteriormente portado y optimizado para PICO 4 Ultra Enterprise.",
         }
     };
 
