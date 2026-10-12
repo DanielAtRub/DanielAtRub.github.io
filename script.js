@@ -81,8 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             /* SPIN FOR YOUR LIFE */
             tech_spin: "Dark roguelite roulette game developed with Unity & C#, combining strategy, survival and horror mechanics.",
-            btn_steam: "Demo on Steam →",
-			btn_google_demo: "Demo on Google Play →",
+            btn_steam: "View on Steam →",
+					
+			/* CONECTICA */
+			tech_conectica: "Procedural pipe-connection puzzle game developed with Unity and C#, featuring progressive difficulty, grid-based puzzles and gameplay systems.",
 
             /* UNITY ASSET STORE */
             date_inv_pro: "Latest update: May 2026",
@@ -169,8 +171,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             /* SPIN FOR YOUR LIFE */
             tech_spin: "Juego de ruleta roguelite de terror desarrollado con Unity y C#, combinando estrategia, supervivencia y mecánicas de riesgo.",
-            btn_steam: "Demo en Steam →",
-			btn_google_demo: "Demo en Google Play →",
+            btn_steam: "Ver en Steam →",
+					
+			/* CONECTICA */
+			tech_conectica: "Juego de puzzles de conexión de tuberías desarrollado con Unity y C#, con generación procedural de niveles, dificultad progresiva y sistemas de gameplay.",
 
             /* UNITY ASSET STORE */
             date_inv_pro: "Última actualización: Mayo 2026",
