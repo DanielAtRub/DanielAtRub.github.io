@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn_tools: "Unity Tools",
             btn_edu: "Education",
 
-            date_present: "Oct 2024 - Present",
+            date_present: "May 2024 - Present",
             job_cto: "Lead VR Programmer",
             job_vr_description: "Unity development for commercial VR experiences, including gameplay, multiplayer systems, optimization and technical architecture.",
 
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn_tools: "Herramientas Unity",
             btn_edu: "Formación",
 
-            date_present: "Oct 2024 - Presente",
+            date_present: "May 2024 - Presente",
             job_cto: "Lead VR Programmer",
             job_vr_description: "Desarrollo de experiencias VR comerciales con Unity, incluyendo gameplay, sistemas multijugador, optimización y arquitectura técnica.",
 
